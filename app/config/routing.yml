@@ -1,8 +1,7 @@
 ecommerce:
     resource: "@EcommerceBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}/
     defaults: { _locale: fr }
     requirements:
         _locale: fr|en
-
-
+        
