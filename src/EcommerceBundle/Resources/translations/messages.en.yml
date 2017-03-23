@@ -1,0 +1,20 @@
+default:
+    about:
+        sliderQuestion1: Why choose Watertec ?
+        sliderTitre1: __sliderTitre1
+        sliderAnswer1: __sliderAnswer1
+        sliderQuestion2: __sliderQuestion2
+        sliderTitle2: __sliderTitle2
+        sliderAnswer2: __sliderAnswer2
+        sliderQuestion3: __sliderQuestion3
+        sliderTitle3: __sliderTitle3
+        sliderAnswer: __sliderAnswer
+        titleConsultant: __titleConsultant
+        consultant: __consultant
+        browse: Read more
+        colTitle1: __colTitle1
+        colExplain1: __colExplain1
+        coltitle2: __coltitle2
+        colExplain2: __colExplain2
+        colTitle3: __colTitle3
+        colExplain3: __colExplain3
