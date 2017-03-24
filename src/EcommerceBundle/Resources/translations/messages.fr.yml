@@ -12,9 +12,24 @@ default:
         titleConsultant: __titleConsultant
         consultant: __consultant
         browse: En savoir plus
-        colTitle1: __colTitle1
-        colExplain1: __colExplain1
-        coltitle2: __coltitle2
-        colExplain2: __colExplain2
-        colTitle3: __colTitle3
-        colExplain3: __colExplain3
+        colTitle1: À propos de nous
+        colExplain1: |
+            Depuis 2005, Watertec Inc. contribue au développement de nombreux produits personnalisés pour différents domaines comme le domaine aquatique, agricole, aquacole, industriel, etc.
+            
+            Avec ses tarifs et ses délais de production compétitifs, l’entreprise souhaite continuer d’évoluer pour répondre efficacement à tous les besoins de sa clientèle en matière de conception et de fabrication de produits personnalisés.
+            
+            La polyvalence de notre équipe nous donne aujourd’hui la possibilité de résoudre efficacement les problèmes rencontrés par ses clients. De plus, les connaissances acquises dans les différents domaines de production nous permettent d’évaluer rapidement toutes les implications d’un projet, tant sur le plan de l’ingénierie que sur la fabrication ou le montage.
+        coltitle2: NOUVEAUTÉ 2017 / ECOMMERCE
+        colExplain2: |
+            L'achat en ligne est maintenant disponible pour les produits commercialisés par Watertec Inc.
+            
+            Sauvez du temps ! Créez un compte, choisissez vos articles et vos quantités, votre prix sera calculé automatiquement en tenant compte de votre escompte.
+            Approuvez votre commande en ligne et elle sera immédiatement traitée.
+        colTitle3: ABRIS DE CHANTIER POOL UP
+        colExplain3: |
+            Le nouvel abris gonflable s'installe en 15mn et résiste aux intempéries.
+            
+            L'abri Pool Up vous permet de travailler sur vos chantiers quelques soient les conditions climatiques.
+            
+            Il protège également l'environnement de la poussière dégagée par les travaux.
+
