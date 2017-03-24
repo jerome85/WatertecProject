@@ -5,6 +5,9 @@ users:
     requirements:
         _locale: fr|en
 
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
 ecommerce:
     resource: "@EcommerceBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/
