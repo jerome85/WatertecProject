@@ -1,0 +1,5 @@
+security:
+    login:
+        title: Login to your account
+        forgot: Forgot Password ?
+        register: Don't have any account ? Create one

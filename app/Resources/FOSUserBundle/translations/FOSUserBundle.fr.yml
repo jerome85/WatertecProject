@@ -1,0 +1,5 @@
+security:
+    login:
+        title: Connexion à votre compte
+        forgot: Mot de passe oublié ?
+        register: Pas inscrit ? Créer un compte
