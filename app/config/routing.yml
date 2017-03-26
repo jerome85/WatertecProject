@@ -7,6 +7,10 @@ users:
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+    prefix:   /{_locale}/
+    defaults: { _locale: fr }
+    requirements:
+        _locale: fr|en
 
 ecommerce:
     resource: "@EcommerceBundle/Resources/config/routing.yml"
