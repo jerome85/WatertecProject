@@ -1,6 +1,6 @@
 users:
     resource: "@UsersBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}/user/
     defaults: { _locale: fr }
     requirements:
         _locale: fr|en
