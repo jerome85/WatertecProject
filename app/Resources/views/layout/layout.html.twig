@@ -68,7 +68,7 @@
                     <nav id="primary-menu">
 
                         <ul>
-                            <li class="{% block index %}{% endblock %}"><a href="{{ path('ecommerce_about', {'_locale': app.request.locale}) }}"><d{'_locale': app.request.locale}iv>{{ 'about'|trans }}</div></a></li>
+                            <li class="{% block index %}{% endblock %}"><a href="{{ path('ecommerce_about', {'_locale': app.request.locale}) }}"><div>{{ 'about'|trans }}</div></a></li>
                                         {% if app.request.locale == 'fr' %}
                                 <li>
                                     <a href="{{ path(app.request.attributes.get('_route'), {'_locale': 'en'}) }}">
