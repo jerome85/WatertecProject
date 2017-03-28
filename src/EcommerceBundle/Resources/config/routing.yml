@@ -1,3 +1,16 @@
 ecommerce_about:
     path:     /
     defaults: { _controller: EcommerceBundle:Default:index }
+    
+routingProductsAdmin:
+    resource: "@EcommerceBundle/Resources/config/routingAdmin/products.yml"
+    prefix: /admin/products
+    
+routingMediaAdmin:
+    resource: "@EcommerceBundle/Resources/config/routingAdmin/media.yml"
+    prefix: /admin/media
+
+routingCategoriesAdmin:
+    resource: "@EcommerceBundle/Resources/config/routingAdmin/categories.yml"
+    prefix: /admin/categories
+    
