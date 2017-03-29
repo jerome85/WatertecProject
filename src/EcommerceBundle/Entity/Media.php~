@@ -5,7 +5,7 @@ use Symfony\Component\validator\Constraints as Assert;
 /**
  * Media
  *
- * @ORM\Table("media")
+ * @ORM\Table(name="media")
  * @ORM\Entity(repositoryClass="EcommerceBundle\Repository\MediaRepository")
  * @ORM\HasLifecycleCallbacks
  */
@@ -36,7 +36,6 @@ class Media
     
     /**
      * @ORM\Column(type="string",length=255) 
-     * @Assert\NotBlank
      */
     public $name;
     
@@ -182,5 +181,29 @@ class Media
         $this->path = $path;
 
         return $this;
+    }
+
+    /**
+     * Set product
+     *
+     * @param \EcommerceBundle\Entity\Products $product
+     *
+     * @return Media
+     */
+    public function setProduct(\EcommerceBundle\Entity\Products $product = null)
+    {
+        $this->product = $product;
+
+        return $this;
+    }
+
+    /**
+     * Get product
+     *
+     * @return \EcommerceBundle\Entity\Products
+     */
+    public function getProduct()
+    {
+        return $this->product;
     }
 }

@@ -5,7 +5,7 @@ use Symfony\Component\validator\Constraints as Assert;
 /**
  * Media
  *
- * @ORM\Table("media")
+ * @ORM\Table(name="media")
  * @ORM\Entity(repositoryClass="EcommerceBundle\Repository\MediaRepository")
  * @ORM\HasLifecycleCallbacks
  */
@@ -36,7 +36,6 @@ class Media
     
     /**
      * @ORM\Column(type="string",length=255) 
-     * @Assert\NotBlank
      */
     public $name;
     
@@ -48,8 +47,8 @@ class Media
     public $file;
     
     /**
-     * @ORM\ManyToOne(targetEntity="EcommerceBundle\Entity\Products", inversedBy="images")
-     * @ORM\JoinColumn(nullable=true) 
+     * @ORM\ManyToOne(targetEntity="EcommerceBundle\Entity\Products", inversedBy="images", cascade={"remove"})
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id", onDelete="CASCADE", nullable=true) 
      */
     private $product;
     
@@ -206,5 +205,9 @@ class Media
     public function getProduct()
     {
         return $this->product;
+    }
+    
+    public function __toString() {
+        return $this->name;
     }
 }

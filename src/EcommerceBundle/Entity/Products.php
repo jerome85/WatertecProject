@@ -56,7 +56,7 @@ class Products
     private $category;
 
     /**
-     * @ORM\OneToMany(targetEntity="EcommerceBundle\Entity\Media", mappedBy="product", cascade={"persist","remove"})
+     * @ORM\OneToMany(targetEntity="EcommerceBundle\Entity\Media", mappedBy="product", cascade={"remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $images;
@@ -232,5 +232,9 @@ class Products
     public function getImages()
     {
         return $this->images;
+    }
+    
+    public function __toString() {
+        return $this->name;
     }
 }

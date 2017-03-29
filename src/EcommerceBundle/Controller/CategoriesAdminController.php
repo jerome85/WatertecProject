@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
  * Category controller.
  *
  */
-class CategoriesController extends Controller
+class CategoriesAdminController extends Controller
 {
     /**
      * Lists all category entities.
@@ -33,7 +33,7 @@ class CategoriesController extends Controller
      */
     public function newAction(Request $request)
     {
-        $category = new Category();
+        $category = new Categories();
         $form = $this->createForm('EcommerceBundle\Form\CategoriesType', $category);
         $form->handleRequest($request);
 
