@@ -1,5 +1,12 @@
 security:
     login:
+        pageTitle: Login
         title: Login to your account
         forgot: Forgot Password ?
         register: Don't have any account ? Create one
+registration:
+    register:
+        pageTitle: Create an account
+resetting:
+    request:
+        pageTitle: Forgot password

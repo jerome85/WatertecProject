@@ -1,5 +1,9 @@
-{% extends "@FOSUser/layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block title %}{{ 'resetting.request.pageTitle'|trans }}{% endblock title %}
 
 {% block fos_user_content %}
-{% include "@FOSUser/Resetting/request_content.html.twig" %}
+{% include "FOSUserBundle:Resetting:request_content.html.twig" %}
 {% endblock fos_user_content %}

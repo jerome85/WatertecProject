@@ -1,5 +1,12 @@
 security:
     login:
+        pageTitle: Connexion
         title: Connexion à votre compte
         forgot: Mot de passe oublié ?
         register: Pas inscrit ? Créer un compte
+registration:
+    register:
+        pageTitle: Créer un compte
+resetting:
+    request:
+        pageTitle: Mot de passe oublié

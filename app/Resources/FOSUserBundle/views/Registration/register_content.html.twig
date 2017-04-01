@@ -16,7 +16,7 @@
                         <div class="panel panel-default nobottommargin">
                             <div class="panel-body" style="padding: 40px;">
                                 {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register nobottommargin'}}) }}
-                                     <h3>Register for an Account</h3>
+                                     <h3>{{ 'registration.register.pageTitle'|trans }}</h3>
                                 <div class="col_full">
                                     {{ form_row(form.email, { 'attr': {'class': 'form-control'} }) }}
                                 </div>
