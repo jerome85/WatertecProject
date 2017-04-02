@@ -22,7 +22,7 @@ class ProductsAdminController extends Controller
 
         $products = $em->getRepository('EcommerceBundle:Products')->findAll();
 
-        return $this->render('EcommerceBundle:Administration:products/index.html.twig', array(
+        return $this->render('EcommerceBundle:Administration:products/layout/index.html.twig', array(
             'products' => $products,
         ));
     }
@@ -45,7 +45,7 @@ class ProductsAdminController extends Controller
             return $this->redirectToRoute('products_show', array('id' => $product->getId()));
         }
 
-        return $this->render('EcommerceBundle:Administration:products/new.html.twig', array(
+        return $this->render('EcommerceBundle:Administration:products/layout/new.html.twig', array(
             'product' => $product,
             'form' => $form->createView(),
         ));

@@ -1,0 +1,47 @@
+{% trans_default_domain 'admin' %}
+{% extends '::layout/layoutAdmin.html.twig' %}
+
+{% block title %}{{ 'products.index.pageTitle'|trans }}{% endblock title %}
+
+{% block body -%}
+    
+    <section id="content">
+
+        <div class="content-wrap">
+
+            <div class="container clearfix">
+                <h1>{{ 'products.index.list'|trans }}</h1>
+
+                <table class="records_list table table-striped">
+                    <thead>
+                        <tr>
+                            <th>{{ 'products.index.number'|trans }}</th>
+                            <th>{{ 'products.index.name'|trans }}</th>
+                            <th>{{ 'products.index.price'|trans }}</th>
+                            <th>{{ 'products.index.available'|trans }}</th>
+                            <th>{{ 'products.index.actions'|trans }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for product in products %}
+                        <tr>
+                            <td><a href="{{ path('adminProducts_show', { 'id': product.id }) }}">{{ product.id }}</a></td>
+                            <td>{{ product.name }}</td>
+                            <td>{{ product.price }}</td>
+                            <td>{{ product.available }}</td>
+                            <td>
+                                <a href="{{ path('adminProducts_edit', { 'id': entity.id }) }}"><i class="icon-repeat"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                    <ul class="iconlist">
+                        <li><a href="{{ path('adminProducts_new') }}"><i class="icon-plus"></i> 
+                            {{ 'products.index.create'|trans }}
+                        </a></li>
+                    </ul>
+            </div>
+        </div>
+    </section>
+    {% endblock %}

@@ -1,0 +1,56 @@
+{% extends '::layout/layoutAdmin.html.twig' %}
+
+{% block body -%}
+    <section id="content">
+
+        <div class="content-wrap">
+            <div class="container clearfix">
+
+                <div class="tabs divcenter nobottommargin clearfix" id="tab-login-register" style="max-width: 700px;">
+
+                    <h1>Produits</h1>
+
+                    <table class="records_properties table table-striped">
+                        <tbody>
+                            <tr>
+                                <th>Id</th>
+                                <td>{{ entity.id }}</td>
+                            </tr>
+                            <tr>
+                                <th>Nom</th>
+                                <td>{{ entity.nom }}</td>
+                            </tr>
+                            <tr>
+                                <th>Description</th>
+                                <td>{{ entity.description }}</td>
+                            </tr>
+                            <tr>
+                                <th>Prix</th>
+                                <td>{{ entity.prix }}</td>
+                            </tr>
+                            <tr>
+                                <th>Disponible</th>
+                                <td>{{ entity.disponible }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="col_half nobottommargin">
+                        <a href="{{ path('adminProduits') }}">
+                            Back to the list
+                        </a>
+                    </div>
+                    <div class="col_last nobottommargin">
+                        <a href="{{ path('adminProduits_edit', { 'id': entity.id }) }}">
+                            Edit
+                        </a>
+                    </div>
+
+                    {{ form(delete_form) }}
+
+                </div>
+            </div>         
+        </div>
+
+    </section>
+{% endblock %}

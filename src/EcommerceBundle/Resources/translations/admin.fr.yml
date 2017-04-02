@@ -1,0 +1,19 @@
+products:
+        backList: Retour à la liste
+        index:
+            pageTitle: Produits
+            list: Liste des produits
+            number: Numéro
+            name: Nom
+            price: Prix
+            available: Disponible
+            actions: Actions
+            create: Créer un produit
+        new:
+            pageTitle: Création produit
+            name: nom
+            description: description
+            price: prix
+            available: disponible
+            category: catégorie
+            create: Créer

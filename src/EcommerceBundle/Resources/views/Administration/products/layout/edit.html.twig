@@ -1,0 +1,30 @@
+{% extends '::layout/layoutAdmin.html.twig' %}
+
+{% block body -%}
+    <!-- Content 
+    ============================================= -->
+    <section id="content">
+
+        <div class="content-wrap">
+            <div class="container clearfix">
+
+                <div class="tabs divcenter nobottommargin clearfix" id="tab-login-register" style="max-width: 700px;">
+                    <h1>Produits edit</h1>
+                    {% form_theme edit_form 'form/fields.html.twig' %}
+                    <form action="{{ path('adminProduits_update', { 'id' : entity.id }) }}" method="POST" {{ form_enctype(edit_form) }}>
+                        {{ form(edit_form) }}
+                    </form>
+                    
+                            <a href="{{ path('adminProduits') }}">
+                                Back to the list
+                            </a>
+                        
+                       {{ form(delete_form) }}
+                    
+                </div>
+            </div>         
+        </div>
+                    
+
+    </section>
+{% endblock %}
