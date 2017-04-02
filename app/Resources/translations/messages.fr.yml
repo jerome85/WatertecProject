@@ -6,3 +6,8 @@ myProfile: Mon profil
 changePwd: Changer mot de passe
 logout: Déconnexion
 login: Connexion
+
+#--------------------- Admin ---------------------#
+products: Produits
+categories: Catégories
+media: Médias

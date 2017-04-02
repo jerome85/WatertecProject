@@ -1,6 +1,8 @@
 {% trans_default_domain 'admin' %}
 {% extends '::layout/layoutAdmin.html.twig' %}
 
+{% block products %}current{% endblock %}
+
 {% block title %}{{ 'products.new.pageTitle'|trans }}{% endblock title %}
 
 {% block body -%}
@@ -12,7 +14,7 @@
             <div class="container clearfix">
 
                 <div class="tabs divcenter nobottommargin clearfix" id="tab-login-register" style="max-width: 700px;">
-                    <h1>Produits creation</h1>
+                    <h1>{{ 'products.new.pageTitle'|trans }}</h1>
                     {% form_theme form 'form/fields.html.twig' %}
                     {{ form_start(form) }}
                     {{ form_widget(form) }}

@@ -1,24 +1,24 @@
-media_index:
+adminMedia_index:
     path:     /
     defaults: { _controller: "EcommerceBundle:MediaAdmin:index" }
     methods:  GET
 
-media_show:
+adminMedia_show:
     path:     /{id}/show
     defaults: { _controller: "EcommerceBundle:MediaAdmin:show" }
     methods:  GET
 
-media_new:
+adminMedia_new:
     path:     /new
     defaults: { _controller: "EcommerceBundle:MediaAdmin:new" }
     methods:  [GET, POST]
 
-media_edit:
+adminMedia_edit:
     path:     /{id}/edit
     defaults: { _controller: "EcommerceBundle:MediaAdmin:edit" }
     methods:  [GET, POST]
 
-media_delete:
+adminMedia_delete:
     path:     /{id}/delete
     defaults: { _controller: "EcommerceBundle:MediaAdmin:delete" }
     methods:  DELETE

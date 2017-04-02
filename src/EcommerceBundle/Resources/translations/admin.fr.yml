@@ -10,7 +10,7 @@ products:
             actions: Actions
             create: Créer un produit
         new:
-            pageTitle: Création produit
+            pageTitle: Nouveau produit
             name: nom
             description: description
             price: prix

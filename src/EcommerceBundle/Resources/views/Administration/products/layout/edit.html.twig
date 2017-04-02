@@ -1,4 +1,5 @@
 {% extends '::layout/layoutAdmin.html.twig' %}
+{% block products %}current{% endblock %}
 
 {% block body -%}
     <!-- Content 
@@ -11,11 +12,12 @@
                 <div class="tabs divcenter nobottommargin clearfix" id="tab-login-register" style="max-width: 700px;">
                     <h1>Produits edit</h1>
                     {% form_theme edit_form 'form/fields.html.twig' %}
-                    <form action="{{ path('adminProduits_update', { 'id' : entity.id }) }}" method="POST" {{ form_enctype(edit_form) }}>
-                        {{ form(edit_form) }}
-                    </form>
+                    {{ form_start(edit_form) }}
+                        {{ form_widget(edit_form) }}
+                        <input type="submit" value="Edit" />
+                    {{ form_end(edit_form) }}
                     
-                            <a href="{{ path('adminProduits') }}">
+                            <a href="{{ path('adminProducts_index') }}">
                                 Back to the list
                             </a>
                         
@@ -28,3 +30,7 @@
 
     </section>
 {% endblock %}
+
+{% block script %}
+    <script type="text/javascript" src="{{ asset('js/ckeditor/ckeditor.js') }}"></script>
+{% endblock script %}

@@ -53,12 +53,12 @@
                         <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
                             {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
                                 <li><a href="{{ path('fos_user_security_login', {'_locale': app.request.locale}) }}">{{ "login"|trans }}</a></li>
-                            {% else %}
+                                {% else %}
                                 <li><a href="{{ path('fos_user_profile_edit', {'_locale': app.request.locale}) }}">{{ "myProfile"|trans }}</a></li>
                                 <li><a href="{{ path('fos_user_change_password', {'_locale': app.request.locale}) }}">{{ "changePwd"|trans }}</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="{{ path('fos_user_security_logout', {'_locale': app.request.locale}) }}">{{ "logout"|trans }} <i class="icon-signout"></i></a></li>
-                            {% endif %}
+                                    {% endif %}
                         </ul>
                     </div>
 
@@ -68,8 +68,10 @@
                     <nav id="primary-menu">
 
                         <ul>
-                            <li class="{% block index %}{% endblock %}"><a href="{{ path('ecommerce_about', {'_locale': app.request.locale}) }}"><div>{{ 'about'|trans }}</div></a></li>
-                                        {% if app.request.locale == 'fr' %}
+                            <li class="{% block products %}{% endblock %}"><a href="{{ path('adminProducts_index', {'_locale': app.request.locale}) }}"><div>{{ 'products'|trans }}</div></a></li>
+                            <li class="{% block categories %}{% endblock %}"><a href="{{ path('adminCategories_index', {'_locale': app.request.locale}) }}"><div>{{ 'categories'|trans }}</div></a></li>
+                            <li class="{% block media %}{% endblock %}"><a href="{{ path('adminMedia_index', {'_locale': app.request.locale}) }}"><div>{{ 'media'|trans }}</div></a></li>
+                            {% if app.request.locale == 'fr' %}
                                 <li>
                                     <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}">
                                         <div>
@@ -87,43 +89,6 @@
                                 </li>
                             {% endif %}
                         </ul>
-
-                        <!-- Top Cart
-                        ============================================= -->
-                        <div id="top-cart">
-                            <a href="#" id="top-cart-trigger"><i class="icon-shopping-cart"></i><span>5</span></a>
-                            <div class="top-cart-content">
-                                <div class="top-cart-title">
-                                    <h4>Shopping Cart</h4>
-                                </div>
-                                <div class="top-cart-items">
-                                    <div class="top-cart-item clearfix">
-                                        <div class="top-cart-item-image">
-                                            <a href="#"><img src="{{ asset('images/shop/small/1.jpg') }}" alt="Blue Round-Neck Tshirt" /></a>
-                                        </div>
-                                        <div class="top-cart-item-desc">
-                                            <a href="#">Blue Round-Neck Tshirt</a>
-                                            <span class="top-cart-item-price">$19.99</span>
-                                            <span class="top-cart-item-quantity">x 2</span>
-                                        </div>
-                                    </div>
-                                    <div class="top-cart-item clearfix">
-                                        <div class="top-cart-item-image">
-                                            <a href="#"><img src="{{ asset('images/shop/small/6.jpg') }}" alt="Light Blue Denim Dress" /></a>
-                                        </div>
-                                        <div class="top-cart-item-desc">
-                                            <a href="#">Light Blue Denim Dress</a>
-                                            <span class="top-cart-item-price">$24.99</span>
-                                            <span class="top-cart-item-quantity">x 3</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="top-cart-action clearfix">
-                                    <span class="fleft top-checkout-price">$114.95</span>
-                                    <button class="button button-3d button-small nomargin fright">View Cart</button>
-                                </div>
-                            </div>
-                        </div><!-- #top-cart end -->
 
                         <!-- Top Search
                         ============================================= -->

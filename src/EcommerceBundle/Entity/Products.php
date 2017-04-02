@@ -2,7 +2,9 @@
 
 namespace EcommerceBundle\Entity;
 
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Translatable\Translatable;
 
 /**
  * Products
@@ -10,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="products")
  * @ORM\Entity(repositoryClass="EcommerceBundle\Repository\ProductsRepository")
  */
-class Products
+class Products implements Translatable
 {
     /**
      * @var int
@@ -24,6 +26,7 @@ class Products
     /**
      * @var string
      *
+     * @Gedmo\Translatable
      * @ORM\Column(name="name", type="string", length=100)
      */
     private $name;
@@ -31,6 +34,7 @@ class Products
     /**
      * @var string
      *
+     * @Gedmo\Translatable
      * @ORM\Column(name="description", type="text")
      */
     private $description;
@@ -60,6 +64,13 @@ class Products
      * @ORM\JoinColumn(nullable=false)
      */
     private $images;
+    
+    /**
+     * @Gedmo\Locale
+     * Used locale to override Translation listener`s locale
+     * this is not a mapped field of entity metadata, just a simple property
+     */
+    private $locale;
 
 
     /**
@@ -232,6 +243,11 @@ class Products
     public function getImages()
     {
         return $this->images;
+    }
+    
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
     }
     
     public function __toString() {

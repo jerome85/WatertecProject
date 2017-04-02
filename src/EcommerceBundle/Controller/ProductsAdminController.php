@@ -42,7 +42,7 @@ class ProductsAdminController extends Controller
             $em->persist($product);
             $em->flush();
 
-            return $this->redirectToRoute('products_show', array('id' => $product->getId()));
+            return $this->redirectToRoute('adminProducts_show', array('id' => $product->getId()));
         }
 
         return $this->render('EcommerceBundle:Administration:products/layout/new.html.twig', array(
@@ -59,7 +59,7 @@ class ProductsAdminController extends Controller
     {
         $deleteForm = $this->createDeleteForm($product);
 
-        return $this->render('EcommerceBundle:Administration:products/show.html.twig', array(
+        return $this->render('EcommerceBundle:Administration:products/layout/show.html.twig', array(
             'product' => $product,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -78,10 +78,10 @@ class ProductsAdminController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('products_edit', array('id' => $product->getId()));
+            return $this->redirectToRoute('adminProducts_edit', array('id' => $product->getId()));
         }
 
-        return $this->render('EcommerceBundle:Administration:products/edit.html.twig', array(
+        return $this->render('EcommerceBundle:Administration:products/layout/edit.html.twig', array(
             'product' => $product,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -116,7 +116,7 @@ class ProductsAdminController extends Controller
     private function createDeleteForm(Products $product)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('products_delete', array('id' => $product->getId())))
+            ->setAction($this->generateUrl('adminProducts_delete', array('id' => $product->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;

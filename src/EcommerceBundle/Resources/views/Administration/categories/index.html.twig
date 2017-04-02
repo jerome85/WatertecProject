@@ -14,15 +14,15 @@
         <tbody>
         {% for category in categories %}
             <tr>
-                <td><a href="{{ path('categories_show', { 'id': category.id }) }}">{{ category.id }}</a></td>
+                <td><a href="{{ path('adminCategories_show', { 'id': category.id }) }}">{{ category.id }}</a></td>
                 <td>{{ category.name }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('categories_show', { 'id': category.id }) }}">show</a>
+                            <a href="{{ path('adminCategories_show', { 'id': category.id }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('categories_edit', { 'id': category.id }) }}">edit</a>
+                            <a href="{{ path('adminCategories_edit', { 'id': category.id }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
@@ -33,7 +33,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('categories_new') }}">Create a new category</a>
+            <a href="{{ path('adminCategories_new') }}">Create a new category</a>
         </li>
     </ul>
 {% endblock %}
