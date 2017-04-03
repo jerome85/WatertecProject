@@ -13,7 +13,11 @@ class CategoriesType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('image');
+        $builder
+            ->add('name', null, ['attr' => ['class' => 'sm-form-control'], 
+                                 'label' => 'categories.new.name'])
+            ->add('image', null, ['attr' => ['class' => 'sm-form-control'], 
+                                 'label' => 'categories.new.image']);
     }
     
     /**
@@ -22,7 +26,8 @@ class CategoriesType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'EcommerceBundle\Entity\Categories'
+            'data_class' => 'EcommerceBundle\Entity\Categories',
+            'translation_domain' => 'admin'
         ));
     }
 

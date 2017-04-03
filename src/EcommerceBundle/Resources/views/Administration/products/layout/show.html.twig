@@ -1,6 +1,9 @@
+{% trans_default_domain 'admin' %}
 {% extends '::layout/layoutAdmin.html.twig' %}
 
 {% block products %}current{% endblock %}
+
+{% block title %}{{ 'products.show.pageTitle'|trans }}{% endblock title %}
 
 {% block body -%}
     <section id="content">
@@ -10,28 +13,28 @@
 
                 <div class="tabs divcenter nobottommargin clearfix" id="tab-login-register" style="max-width: 700px;">
 
-                    <h1>Produits</h1>
+                    <h1>{{ 'products.show.pageTitle'|trans }}</h1>
 
                     <table class="records_properties table table-striped">
                         <tbody>
                             <tr>
-                                <th>Id</th>
+                                <th>{{ 'products.index.number'|trans }}</th>
                                 <td>{{ product.id }}</td>
                             </tr>
                             <tr>
-                                <th>Nom</th>
+                                <th>{{ 'products.new.name'|trans }}</th>
                                 <td>{{ product.name }}</td>
                             </tr>
                             <tr>
-                                <th>Description</th>
+                                <th>{{ 'products.new.description'|trans }}</th>
                                 <td>{{ product.description|raw }}</td>
                             </tr>
                             <tr>
-                                <th>Prix</th>
+                                <th>{{ 'products.new.price'|trans }}</th>
                                 <td>{{ product.price }}</td>
                             </tr>
                             <tr>
-                                <th>Disponible</th>
+                                <th>{{ 'products.new.available'|trans }}</th>
                                 <td>{{ product.available }}</td>
                             </tr>
                         </tbody>
@@ -39,12 +42,12 @@
 
                     <div class="col_half nobottommargin">
                         <a href="{{ path('adminProducts_index') }}">
-                            Back to the list
+                            {{ 'products.backList'|trans }}
                         </a>
                     </div>
                     <div class="col_last nobottommargin">
                         <a href="{{ path('adminProducts_edit', { 'id': product.id }) }}">
-                            Edit
+                            {{ 'products.show.edit'|trans }}
                         </a>
                     </div>
 

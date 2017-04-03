@@ -22,7 +22,7 @@ class CategoriesAdminController extends Controller
 
         $categories = $em->getRepository('EcommerceBundle:Categories')->findAll();
 
-        return $this->render('EcommerceBundle:Administration:categories/index.html.twig', array(
+        return $this->render('EcommerceBundle:Administration:categories/layout/index.html.twig', array(
             'categories' => $categories,
         ));
     }
@@ -45,7 +45,7 @@ class CategoriesAdminController extends Controller
             return $this->redirectToRoute('categories_show', array('id' => $category->getId()));
         }
 
-        return $this->render('EcommerceBundle:Administration:categories/new.html.twig', array(
+        return $this->render('EcommerceBundle:Administration:categories/layout/new.html.twig', array(
             'category' => $category,
             'form' => $form->createView(),
         ));
@@ -59,7 +59,7 @@ class CategoriesAdminController extends Controller
     {
         $deleteForm = $this->createDeleteForm($category);
 
-        return $this->render('EcommerceBundle:Administration:categories/show.html.twig', array(
+        return $this->render('EcommerceBundle:Administration:categories/layout/show.html.twig', array(
             'category' => $category,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -78,10 +78,10 @@ class CategoriesAdminController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('categories_edit', array('id' => $category->getId()));
+            return $this->redirectToRoute('adminCategories_show', array('id' => $category->getId()));
         }
 
-        return $this->render('EcommerceBundle:Administration:categories/edit.html.twig', array(
+        return $this->render('EcommerceBundle:Administration:categories/layout/edit.html.twig', array(
             'category' => $category,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -96,14 +96,19 @@ class CategoriesAdminController extends Controller
     {
         $form = $this->createDeleteForm($category);
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($category);
-            $em->flush();
+        
+        if ($form->isSubmitted() && $form->isValid()) { 
+            try {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($category);
+                $em->flush();
+            } catch (\Doctrine\DBAL\DBALException $e) {
+                $this->get('session')->getFlashBag()->add('warning', $this->get('translator')->trans('deleteEntityFail'));
+                return $this->redirect($this->generateUrl('adminCategories_edit', array('id' => $category->getId())));
+            }
         }
 
-        return $this->redirectToRoute('categories_index');
+        return $this->redirectToRoute('adminCategories_index');
     }
 
     /**
@@ -116,7 +121,7 @@ class CategoriesAdminController extends Controller
     private function createDeleteForm(Categories $category)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('categories_delete', array('id' => $category->getId())))
+            ->setAction($this->generateUrl('adminCategories_delete', array('id' => $category->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;

@@ -1,0 +1,45 @@
+{% trans_default_domain 'admin' %}
+{% extends '::layout/layoutAdmin.html.twig' %}
+
+{% block categories %}current{% endblock %}
+
+{% block title %}{{ 'categories.index.pageTitle'|trans }}{% endblock title %}
+
+{% block body -%}
+    
+    <section id="content">
+
+        <div class="content-wrap">
+
+            <div class="container clearfix">
+                <h1>{{ 'categories.index.list'|trans }}</h1>
+
+                <table class="records_list table table-striped">
+                    <thead>
+                        <tr>
+                            <th>{{ 'categories.index.number'|trans }}</th>
+                            <th>{{ 'categories.index.name'|trans }}</th>
+                            <th>{{ 'categories.index.actions'|trans }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for category in categories %}
+                        <tr>
+                            <td><a href="{{ path('adminCategories_show', { 'id': category.id }) }}">{{ category.id }}</a></td>
+                            <td>{{ category.name }}</td>
+                            <td>
+                                <a href="{{ path('adminCategories_edit', { 'id': category.id }) }}"><i class="icon-repeat"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                    <ul class="iconlist">
+                        <li><a href="{{ path('adminCategories_new') }}"><i class="icon-plus"></i> 
+                            {{ 'categories.index.create'|trans }}
+                        </a></li>
+                    </ul>
+            </div>
+        </div>
+    </section>
+{% endblock %}

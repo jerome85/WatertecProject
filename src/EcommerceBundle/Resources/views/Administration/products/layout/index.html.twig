@@ -32,7 +32,7 @@
                             <td>{{ product.price }}</td>
                             <td>{{ product.available }}</td>
                             <td>
-                                <a href="{{ path('adminProducts_edit', { 'id': entity.id }) }}"><i class="icon-repeat"></i></a>
+                                <a href="{{ path('adminProducts_edit', { 'id': product.id }) }}"><i class="icon-repeat"></i></a>
                             </td>
                         </tr>
                     {% endfor %}

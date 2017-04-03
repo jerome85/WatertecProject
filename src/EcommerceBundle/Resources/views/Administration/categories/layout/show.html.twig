@@ -1,0 +1,53 @@
+{% trans_default_domain 'admin' %}
+{% extends '::layout/layoutAdmin.html.twig' %}
+
+{% block categories %}current{% endblock %}
+
+{% block title %}{{ 'categories.show.pageTitle'|trans }}{% endblock title %}
+
+{% block body -%}
+    <section id="content">
+
+        <div class="content-wrap">
+            <div class="container clearfix">
+
+                <div class="tabs divcenter nobottommargin clearfix" id="tab-login-register" style="max-width: 700px;">
+
+                    <h1>{{ 'categories.show.pageTitle'|trans }}</h1>
+
+                    <table class="records_properties table table-striped">
+                        <tbody>
+                            <tr>
+                                <th>{{ 'categories.index.number'|trans }}</th>
+                                <td>{{ category.id }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ 'categories.new.name'|trans }}</th>
+                                <td>{{ category.name }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ 'categories.new.image'|trans }}</th>
+                                <td>{{ category.image }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="col_half nobottommargin">
+                        <a href="{{ path('adminCategories_index') }}">
+                            {{ 'categories.backList'|trans }}
+                        </a>
+                    </div>
+                    <div class="col_last nobottommargin">
+                        <a href="{{ path('adminCategories_edit', { 'id': category.id }) }}">
+                            {{ 'categories.show.edit'|trans }}
+                        </a>
+                    </div>
+
+                    {{ form(delete_form) }}
+
+                </div>
+            </div>         
+        </div>
+
+    </section>
+{% endblock %}

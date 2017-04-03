@@ -1,0 +1,47 @@
+{% trans_default_domain 'admin' %}
+{% extends '::layout/layoutAdmin.html.twig' %}
+
+{% block categories %}current{% endblock %}
+
+{% block title %}{{ 'categories.edit.pageTitle'|trans }}{% endblock title %}
+
+{% block body -%}
+    <!-- Content 
+    ============================================= -->
+    <section id="content">
+        
+
+        <div class="content-wrap">
+            <div class="container clearfix">
+                {% if app.request.hasPreviousSession %}
+                    {% for type, messages in app.session.flashbag.all() %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ type }}">
+                                <i class="icon-{{ type }}-sign"></i>
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                {% endif %}
+                <div class="tabs divcenter nobottommargin clearfix" id="tab-login-register" style="max-width: 700px;">
+                    <h1>{{ 'categories.edit.pageTitle'|trans }}</h1>
+                    {% form_theme edit_form 'form/fields.html.twig' %}
+                    {{ form_start(edit_form) }}
+                        {{ form_widget(edit_form) }}
+                        <input type="submit" value="{{ 'categories.edit.update'|trans }}" />
+                    {{ form_end(edit_form) }}
+                    
+                    {{ form_start(delete_form) }}
+                        <input type="submit" value="{{ 'categories.edit.delete'|trans }}">
+                    {{ form_end(delete_form) }}
+                    
+                    <a href="{{ path('adminCategories_index') }}">
+                        {{ 'categories.backList'|trans }}
+                    </a>     
+                </div>
+            </div>         
+        </div>
+                    
+
+    </section>
+{% endblock %}

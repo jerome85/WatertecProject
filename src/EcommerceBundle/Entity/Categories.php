@@ -2,7 +2,9 @@
 
 namespace EcommerceBundle\Entity;
 
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Translatable\Translatable;
 
 /**
  * Categories
@@ -22,7 +24,7 @@ class Categories
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="EcommerceBundle\Entity\Media", cascade={"persist","remove"})
+     * @ORM\OneToOne(targetEntity="EcommerceBundle\Entity\Media")
      * @ORM\JoinColumn(nullable=false)
      */
     private $image;
@@ -30,9 +32,17 @@ class Categories
     /**
      * @var string
      *
+     * @Gedmo\Translatable
      * @ORM\Column(name="name", type="string", length=125)
      */
     private $name;
+    
+    /**
+     * @Gedmo\Locale
+     * Used locale to override Translation listener`s locale
+     * this is not a mapped field of entity metadata, just a simple property
+     */
+    private $locale;
 
 
     /**
@@ -89,6 +99,11 @@ class Categories
     public function getImage()
     {
         return $this->image;
+    }
+    
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
     }
     
     public function __toString()

@@ -1,0 +1,32 @@
+{% trans_default_domain 'admin' %}
+{% extends '::layout/layoutAdmin.html.twig' %}
+
+{% block categories %}current{% endblock %}
+
+{% block title %}{{ 'categories.new.pageTitle'|trans }}{% endblock title %}
+
+{% block body -%}
+    <!-- Content 
+    ============================================= -->
+    <section id="content">
+
+        <div class="content-wrap">
+            <div class="container clearfix">
+
+                <div class="tabs divcenter nobottommargin clearfix" id="tab-login-register" style="max-width: 700px;">
+                    <h1>{{ 'categories.new.pageTitle'|trans }}</h1>
+                    {% form_theme form 'form/fields.html.twig' %}
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <input type="submit" value="{{ 'categories.new.create'|trans }}" />
+                    {{ form_end(form) }}
+                    <a href="{{ path('adminCategories_index') }}">
+                        {{ 'categories.backList'|trans }}
+                    </a>
+
+                </div>
+            </div>         
+        </div>
+
+    </section>
+{% endblock %}

@@ -78,7 +78,7 @@ class ProductsAdminController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('adminProducts_edit', array('id' => $product->getId()));
+            return $this->redirectToRoute('adminProducts_show', array('id' => $product->getId()));
         }
 
         return $this->render('EcommerceBundle:Administration:products/layout/edit.html.twig', array(
@@ -103,7 +103,7 @@ class ProductsAdminController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('products_index');
+        return $this->redirectToRoute('adminProducts_index');
     }
 
     /**

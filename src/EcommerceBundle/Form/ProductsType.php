@@ -20,7 +20,7 @@ class ProductsType extends AbstractType
                                         'label' => 'products.new.description'])
             ->add('price', null, ['attr' => ['class' => 'sm-form-control'], 
                                   'label' => 'products.new.price'])
-            ->add('available', null, ['attr' => ['class' => 'sm-form-control'], 
+            ->add('available', null, ['attr' => ['class' => 'checkbox'], 
                                       'label' => 'products.new.available'])
             ->add('category', null, ['attr' => ['class' => 'sm-form-control'], 
                                      'label' => 'products.new.category']);

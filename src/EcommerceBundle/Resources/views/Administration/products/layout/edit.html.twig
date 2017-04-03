@@ -1,5 +1,9 @@
+{% trans_default_domain 'admin' %}
 {% extends '::layout/layoutAdmin.html.twig' %}
+
 {% block products %}current{% endblock %}
+
+{% block title %}{{ 'products.edit.pageTitle'|trans }}{% endblock title %}
 
 {% block body -%}
     <!-- Content 
@@ -10,19 +14,20 @@
             <div class="container clearfix">
 
                 <div class="tabs divcenter nobottommargin clearfix" id="tab-login-register" style="max-width: 700px;">
-                    <h1>Produits edit</h1>
+                    <h1>{{ 'products.edit.pageTitle'|trans }}</h1>
                     {% form_theme edit_form 'form/fields.html.twig' %}
                     {{ form_start(edit_form) }}
                         {{ form_widget(edit_form) }}
-                        <input type="submit" value="Edit" />
+                        <input type="submit" value="{{ 'products.edit.update'|trans }}" />
                     {{ form_end(edit_form) }}
                     
-                            <a href="{{ path('adminProducts_index') }}">
-                                Back to the list
-                            </a>
-                        
-                       {{ form(delete_form) }}
+                    {{ form_start(delete_form) }}
+                        <input type="submit" value="{{ 'products.edit.delete'|trans }}">
+                    {{ form_end(delete_form) }}
                     
+                    <a href="{{ path('adminProducts_index') }}">
+                        {{ 'products.backList'|trans }}
+                    </a>     
                 </div>
             </div>         
         </div>

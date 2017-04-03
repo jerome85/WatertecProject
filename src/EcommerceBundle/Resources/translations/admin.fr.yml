@@ -17,3 +17,31 @@ products:
             available: disponible
             category: catégorie
             create: Créer
+        edit:
+            pageTitle: Modifier un produit
+            update: Modifier
+            delete: Supprimer
+        show:
+            pageTitle: Afficher un produit
+            edit: Modifier
+categories:
+        backList: Retour à la liste
+        index:
+            pageTitle: Catégories
+            list: Liste des catégories
+            number: Numéro
+            name: Nom
+            actions: Actions
+            create: Créer une catégorie
+        new: 
+            pageTitle: Nouvelle catégorie
+            name: Nom 
+            image: Image
+            create: Créer
+        edit:
+            pageTitle: Modifier une catégorie
+            update: Modifier
+            delete: Supprimer
+        show:
+            pageTitle: Afficher une catégorie
+            edit: Modifier

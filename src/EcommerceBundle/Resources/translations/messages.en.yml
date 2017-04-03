@@ -1,3 +1,4 @@
+deleteEntityFail: Can not delete entity because it is used bay another
 default:
     about:
         sliderQuestion1: Why choose Watertec ?
