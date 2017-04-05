@@ -5,6 +5,7 @@ namespace EcommerceBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 class MediaType extends AbstractType
 {
@@ -13,7 +14,13 @@ class MediaType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('updateAt')->add('name')->add('path')->add('product');
+        $builder
+            ->add('name', null, ['attr' => ['class' => 'sm-form-control'], 
+                                 'label' => 'media.new.name'])
+            ->add('path', null, ['attr' => ['class' => 'sm-form-control'], 
+                                 'label' => 'media.new.path'])
+            ->add('product', null, ['attr' => ['class' => 'sm-form-control'], 
+                                 'label' => 'media.new.product']);
     }
     
     /**
@@ -22,7 +29,8 @@ class MediaType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'EcommerceBundle\Entity\Media'
+            'data_class' => 'EcommerceBundle\Entity\Media',
+            'translation_domain' => 'admin'
         ));
     }
 

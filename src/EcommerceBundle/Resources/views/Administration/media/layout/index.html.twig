@@ -1,0 +1,49 @@
+{% trans_default_domain 'admin' %}
+{% extends '::layout/layoutAdmin.html.twig' %}
+
+{% block media %}current{% endblock %}
+
+{% block title %}{{ 'media.index.pageTitle'|trans }}{% endblock title %}
+
+{% block body -%}
+    
+    <section id="content">
+
+        <div class="content-wrap">
+
+            <div class="container clearfix">
+                <h1>{{ 'media.index.list'|trans }}</h1>
+
+                <table class="records_list table table-striped">
+                    <thead>
+                        <tr>
+                            <th>{{ 'media.index.number'|trans }}</th>
+                            <th>{{ 'media.index.update'|trans }}</th>
+                            <th>{{ 'media.index.name'|trans }}</th>
+                            <th>{{ 'media.index.path'|trans }}</th>
+                            <th>{{ 'media.index.actions'|trans }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for media in medias %}
+                        <tr>
+                            <td><a href="{{ path('adminMedia_show', { 'id': media.id }) }}">{{ media.id }}</a></td>
+                            <td>{% if media.updateAt %}{{ media.updateAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                            <td>{{ media.name }}</td>
+                            <td>{{ media.path }}</td>
+                            <td>
+                                <a href="{{ path('adminMedia_edit', { 'id': media.id }) }}"><i class="icon-repeat"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                    <ul class="iconlist">
+                        <li><a href="{{ path('adminMedia_new') }}"><i class="icon-plus"></i> 
+                            {{ 'media.index.create'|trans }}
+                        </a></li>
+                    </ul>
+            </div>
+        </div>
+    </section>
+{% endblock %}

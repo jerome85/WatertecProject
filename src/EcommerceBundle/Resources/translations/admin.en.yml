@@ -45,3 +45,28 @@ categories:
         show:
             pageTitle: Show category
             edit: Edit
+media:
+        backList: Back to the list
+        index:
+            pageTitle: Medias
+            list: Medias list
+            number: Number
+            update: Last update
+            name: Name
+            path: Path
+            actions: Actions
+            create: Create a new media
+        new: 
+            pageTitle: New media
+            name: Name
+            path: Path
+            product: Product
+            image: Image
+            create: Create
+        edit:
+            pageTitle: Edit Media
+            update: Update
+            delete: Delete
+        show:
+            pageTitle: Show media
+            edit: Edit

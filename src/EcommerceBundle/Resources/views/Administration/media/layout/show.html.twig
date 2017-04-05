@@ -1,0 +1,61 @@
+{% trans_default_domain 'admin' %}
+{% extends '::layout/layoutAdmin.html.twig' %}
+
+{% block categories %}current{% endblock %}
+
+{% block title %}{{ 'media.show.pageTitle'|trans }}{% endblock title %}
+
+{% block body -%}
+    <section id="content">
+
+        <div class="content-wrap">
+            <div class="container clearfix">
+
+                <div class="tabs divcenter nobottommargin clearfix" id="tab-login-register" style="max-width: 700px;">
+
+                    <h1>{{ 'media.show.pageTitle'|trans }}</h1>
+
+                    <table class="records_properties table table-striped">
+                        <tbody>
+                            <tr>
+                                <th>{{ 'media.index.number'|trans }}</th>
+                                <td>{{ media.id }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ 'media.index.update'|trans }}</th>
+                                <td>{% if media.updateAt %}{{ media.updateAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ 'media.new.name'|trans }}</th>
+                                <td>{{ media.name }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ 'media.new.path'|trans }}</th>
+                                <td>{{ media.path }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ 'media.new.product'|trans }}</th>
+                                <td>{{ media.product }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="col_half nobottommargin">
+                        <a href="{{ path('adminMedia_index') }}">
+                            {{ 'media.backList'|trans }}
+                        </a>
+                    </div>
+                    <div class="col_last nobottommargin">
+                        <a href="{{ path('adminMedia_edit', { 'id': media.id }) }}">
+                            {{ 'media.show.edit'|trans }}
+                        </a>
+                    </div>
+
+                    {{ form(delete_form) }}
+
+                </div>
+            </div>         
+        </div>
+
+    </section>
+{% endblock %}

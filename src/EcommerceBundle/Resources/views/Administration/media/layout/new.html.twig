@@ -1,0 +1,32 @@
+{% trans_default_domain 'admin' %}
+{% extends '::layout/layoutAdmin.html.twig' %}
+
+{% block media %}current{% endblock %}
+
+{% block title %}{{ 'media.new.pageTitle'|trans }}{% endblock title %}
+
+{% block body -%}
+    <!-- Content 
+    ============================================= -->
+    <section id="content">
+
+        <div class="content-wrap">
+            <div class="container clearfix">
+
+                <div class="tabs divcenter nobottommargin clearfix" id="tab-login-register" style="max-width: 700px;">
+                    <h1>{{ 'media.new.pageTitle'|trans }}</h1>
+                    {% form_theme form 'form/fields.html.twig' %}
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <input type="submit" value="{{ 'media.new.create'|trans }}" />
+                    {{ form_end(form) }}
+                    <a href="{{ path('adminMedia_index') }}">
+                        {{ 'media.backList'|trans }}
+                    </a>
+
+                </div>
+            </div>         
+        </div>
+
+    </section>
+{% endblock %}
