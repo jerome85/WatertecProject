@@ -4,12 +4,14 @@
 {% block media %}current{% endblock %}
 
 {% block title %}{{ 'media.edit.pageTitle'|trans }}{% endblock title %}
+{% block css %}<link rel="stylesheet" href="{{ asset('css/components/bs-filestyle.css') }}" type="text/css" />{% endblock css %}
+
 
 {% block body -%}
     <!-- Content 
     ============================================= -->
     <section id="content">
-        
+
 
         <div class="content-wrap">
             <div class="container clearfix">
@@ -27,21 +29,37 @@
                     <h1>{{ 'media.edit.pageTitle'|trans }}</h1>
                     {% form_theme edit_form 'form/fields.html.twig' %}
                     {{ form_start(edit_form) }}
-                        {{ form_widget(edit_form) }}
-                        <input type="submit" value="{{ 'media.edit.update'|trans }}" />
+                    {{ form_widget(edit_form) }}
+                    <input type="submit" value="{{ 'media.edit.update'|trans }}" />
                     {{ form_end(edit_form) }}
-                    
+
                     {{ form_start(delete_form) }}
-                        <input type="submit" value="{{ 'media.edit.delete'|trans }}">
+                    <input type="submit" value="{{ 'media.edit.delete'|trans }}">
                     {{ form_end(delete_form) }}
-                    
+
                     <a href="{{ path('adminMedia_index') }}">
                         {{ 'media.backList'|trans }}
                     </a>     
                 </div>
             </div>         
         </div>
-                    
+
 
     </section>
 {% endblock %}
+
+{% block script %}
+    <script type="text/javascript" src="{{ asset('js/components/bs-filestyle.js') }}"></script>
+    <script  type="text/javascript">
+        $(document).on('ready', function () {
+ 
+            $("#ecommercebundle_media_file").fileinput({
+                browseLabel: "{{ 'media.pickImage'|trans }}",
+                showUpload: false,
+                removeLabel: "{{ 'media.cancel'|trans }}"
+            });
+
+        });
+
+    </script>
+{% endblock script %}

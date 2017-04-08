@@ -1,11 +1,17 @@
 {# app/Resources/views/form/fields.html.twig #}
 {% block form_row %}
-{% spaceless %}
-    <div class="col_full">
-        {{ form_label(form) }}
-        {{ form_errors(form) }}
-        {{ form_widget(form) }}
-    </div>
+    {% spaceless %}
+        <div class="col_full">
+            {{ form_label(form) }}
+            {{ form_errors(form) }}
+            {{ form_widget(form) }}
+        </div>
 
-{% endspaceless %}
+    {% endspaceless %}
 {% endblock form_row %}
+
+{% block file_widget %}
+    {% spaceless %}
+        {{ form_widget(form) }}
+    {% endspaceless %}
+{% endblock %}

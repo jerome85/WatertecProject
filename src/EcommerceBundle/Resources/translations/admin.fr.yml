@@ -47,6 +47,8 @@ categories:
             edit: Modifier
 media:
         backList: Retour à la liste
+        pickImage: Choisissez une image
+        cancel: Annuler
         index:
             pageTitle: Médias
             list: Liste des médias
@@ -60,6 +62,7 @@ media:
             pageTitle: Nouveau média
             name: Nom
             path: Path
+            file: Fichier
             product: Produit
             image: Image
             create: Créer

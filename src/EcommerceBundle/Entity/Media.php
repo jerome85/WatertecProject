@@ -11,6 +11,8 @@ use Symfony\Component\validator\Constraints as Assert;
  */
 class Media
 {
+    const SERVER_PATH_TO_IMAGE_FOLDER = '/uploads/image';
+    
     /**
      * @var integer
      *
@@ -54,7 +56,7 @@ class Media
     
     public function getUploadRootDir()
     {
-        return __dir__.'/../../../../web/uploads';
+        return __DIR__.'/../../../web/uploads/images';
     }
     
     public function getAbsolutePath()
@@ -77,6 +79,8 @@ class Media
         $this->oldFile = $this->getPath();
         $this->updateAt = new \DateTime();
         
+        $this->removeUpload();
+        
         if (null !== $this->file) 
             $this->path = sha1(uniqid(mt_rand(),true)).'.'.$this->file->guessExtension();
     }
@@ -87,11 +91,10 @@ class Media
      */
     public function upload()
     {
-        if (null !== $this->file) {
+        if (null !== $this->file){
             $this->file->move($this->getUploadRootDir(),$this->path);
             unset($this->file);
             
-            if ($this->oldFile != null) unlink($this->tempFile);
         }
     }
     

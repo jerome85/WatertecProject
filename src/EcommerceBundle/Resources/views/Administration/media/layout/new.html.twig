@@ -4,6 +4,7 @@
 {% block media %}current{% endblock %}
 
 {% block title %}{{ 'media.new.pageTitle'|trans }}{% endblock title %}
+{% block css %}<link rel="stylesheet" href="{{ asset('css/components/bs-filestyle.css') }}" type="text/css" />{% endblock css %}
 
 {% block body -%}
     <!-- Content 
@@ -30,3 +31,19 @@
 
     </section>
 {% endblock %}
+
+{% block script %}
+    <script type="text/javascript" src="{{ asset('js/components/bs-filestyle.js') }}"></script>
+    <script  type="text/javascript">
+        $(document).on('ready', function () {
+ 
+            $("#ecommercebundle_media_file").fileinput({
+                browseLabel: "{{ 'media.pickImage'|trans }}",
+                showUpload: false,
+                removeLabel: "{{ 'media.cancel'|trans }}"
+            });
+
+        });
+
+    </script>
+{% endblock script %}
