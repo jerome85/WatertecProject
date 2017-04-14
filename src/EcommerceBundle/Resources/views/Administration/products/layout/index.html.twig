@@ -17,7 +17,7 @@
                 <table class="records_list table table-striped">
                     <thead>
                         <tr>
-                            <th>{{ 'products.index.number'|trans }}</th>
+                            <th>{{ 'products.index.sku'|trans }}</th>
                             <th>{{ 'products.index.name'|trans }}</th>
                             <th>{{ 'products.index.price'|trans }}</th>
                             <th>{{ 'products.index.available'|trans }}</th>
@@ -27,7 +27,7 @@
                     <tbody>
                     {% for product in products %}
                         <tr>
-                            <td><a href="{{ path('adminProducts_show', { 'id': product.id }) }}">{{ product.id }}</a></td>
+                            <td><a href="{{ path('adminProducts_show', { 'id': product.id }) }}">{{ product.sku }}</a></td>
                             <td>{{ product.name }}</td>
                             <td>{{ product.price }}</td>
                             <td>{{ product.available }}</td>

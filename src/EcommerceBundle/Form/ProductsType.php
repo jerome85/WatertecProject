@@ -14,6 +14,8 @@ class ProductsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('sku', null, ['attr' => ['class' => 'sm-form-control'], 
+                                 'label' => 'products.new.sku'])
             ->add('name', null, ['attr' => ['class' => 'sm-form-control'], 
                                  'label' => 'products.new.name'])
             ->add('description', null, ['attr' => ['class' => 'ckeditor'], 

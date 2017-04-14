@@ -22,6 +22,13 @@ class Products implements Translatable
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="sku", type="integer")
+     */
+    private $sku;
 
     /**
      * @var string
@@ -252,5 +259,29 @@ class Products implements Translatable
     
     public function __toString() {
         return $this->name;
+    }
+
+    /**
+     * Set sku
+     *
+     * @param integer $sku
+     *
+     * @return Products
+     */
+    public function setSku($sku)
+    {
+        $this->sku = $sku;
+
+        return $this;
+    }
+
+    /**
+     * Get sku
+     *
+     * @return integer
+     */
+    public function getSku()
+    {
+        return $this->sku;
     }
 }

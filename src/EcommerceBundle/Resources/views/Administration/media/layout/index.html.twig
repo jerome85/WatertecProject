@@ -21,6 +21,7 @@
                             <th>{{ 'media.index.update'|trans }}</th>
                             <th>{{ 'media.index.name'|trans }}</th>
                             <th>{{ 'media.index.path'|trans }}</th>
+                            <th>{{ 'media.index.product'|trans }}</th>
                             <th>{{ 'media.index.actions'|trans }}</th>
                         </tr>
                     </thead>
@@ -31,6 +32,7 @@
                             <td>{% if media.updateAt %}{{ media.updateAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                             <td>{{ media.name }}</td>
                             <td>{{ media.path }}</td>
+                            <td>{{ media.product }}</td>
                             <td>
                                 <a href="{{ path('adminMedia_edit', { 'id': media.id }) }}"><i class="icon-repeat"></i></a>
                             </td>

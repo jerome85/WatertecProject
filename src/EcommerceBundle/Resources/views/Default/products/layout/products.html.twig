@@ -1,0 +1,165 @@
+{% extends '::layout/layout.html.twig' %}
+{% block title %}Produits{% endblock %}
+{% block keyword %}{% endblock %}
+{% block description %}{% endblock %}
+{% block products %}current{% endblock %}
+
+{% block body %}
+    <!-- Content
+                ============================================= -->
+    <section id="content">
+
+        <div class="content-wrap">
+
+            <div class="container clearfix">
+
+                <!-- Post Content
+                ============================================= -->
+                <div class="postcontent nobottommargin col_last">
+                    {% for type, messages in app.session.flashbag.all() %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ type }}">
+                                <i class="icon-thumbs-up"></i>
+                                    {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    
+                    {% if products|length != 0 %}
+                    <!-- Shop
+                    ============================================= -->
+                    <div id="shop" class="shop product-3 grid-container clearfix">
+                        
+                        {% for product in products %}
+                        <div class="product sf-{{ product.category.id }} clearfix">
+                            <div class="product-image">
+                                {% for image in product.images %}
+                                <a href="#"><img src="{{ asset('uploads/images/'~image.path) }}" alt="{{ image.name }}"></a>
+                                {# <a href="#"><img src="{{ asset('images/shop/dress/1-1.jpg') }}" alt="Checked Short Dress"></a> #}
+                                 <div class="sale-flash">50% Off*</div> 
+                                {% endfor %}
+                                <div class="product-overlay">
+                                    {% if cart[product.id] is not defined %}
+                                        <a href="{#{{ path('add', {'_locale' : 'fr', 'id' : product.id }) }}#}" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+                                    {% else %}
+                                        <a href="#" class="add-to-cart"><i class="icon-check"></i><span> In cart</span></a>
+                                    {% endif %}
+                                    <a href="{#{{ path('quickview', {'_locale' : 'fr', 'id' : product.id }) }}#}" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
+                                </div>
+                            </div>
+                            <div class="product-desc center">
+                                <div class="product-title"><h3><a href="#">{{ product.name }}</a></h3></div>
+                                <div class="product-price">${{ product.price }}</div>
+                                <div class="product-rating">
+                                    <i class="icon-star3"></i>
+                                    <i class="icon-star3"></i>
+                                    <i class="icon-star3"></i>
+                                    <i class="icon-star3"></i>
+                                    <i class="icon-star-half-full"></i>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        
+                    </div><!-- #shop end -->
+                    {% else %}
+                        <center>{{ 'products.emptyList'|trans }}</center>
+                    {% endif %}
+
+                </div><!-- .postcontent end -->
+
+                <!-- Sidebar
+                ============================================= -->
+                <div class="sidebar nobottommargin">
+                    <div class="sidebar-widgets-wrap">
+
+                        <div class="widget widget-filter-links clearfix">
+
+                            <h4>{{ 'products.selectCategory'|trans }}</h4>
+                            <ul class="custom-filter" data-container="#shop" data-active-class="active-filter">
+                                <li class="widget-filter-reset active-filter"><a href="#" data-filter="*">Clear</a></li>
+                                {{ render(controller('EcommerceBundle:Categories:menu')) }}
+                            </ul>
+
+                        </div>
+
+                        <div class="widget widget-filter-links clearfix">
+
+                            <h4>{{ 'products.sortBy'|trans }}</h4>
+                            <ul class="shop-sorting">
+                                <li class="widget-filter-reset active-filter"><a href="#" data-sort-by="original-order">Clear</a></li>
+                                <li><a href="#" data-sort-by="name">{{ 'products.name'|trans }}</a></li>
+                                <li><a href="#" data-sort-by="price_lh">{{ 'products.price'|trans }}: {{ 'products.asc'|trans }}</a></li>
+                                <li><a href="#" data-sort-by="price_hl">{{ 'products.price'|trans }}: {{ 'products.desc'|trans }}</a></li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+                </div><!-- .sidebar end -->
+
+            </div>
+
+        </div>
+
+    </section><!-- #content end -->
+{% endblock %}
+
+{% block script %}
+    <script>
+        jQuery(document).ready(function ($) {
+            $('#shop').isotope({
+                transitionDuration: '0.65s',
+                getSortData: {
+                    name: '.product-title',
+                    price_lh: function (itemElem) {
+                        if ($(itemElem).find('.product-price').find('ins').length > 0) {
+                            var price = $(itemElem).find('.product-price ins').text();
+                        } else {
+                            var price = $(itemElem).find('.product-price').text();
+                        }
+
+                        priceNum = price.split("$");
+
+                        return parseFloat(priceNum[1]);
+                    },
+                    price_hl: function (itemElem) {
+                        if ($(itemElem).find('.product-price').find('ins').length > 0) {
+                            var price = $(itemElem).find('.product-price ins').text();
+                        } else {
+                            var price = $(itemElem).find('.product-price').text();
+                        }
+
+                        priceNum = price.split("$");
+
+                        return parseFloat(priceNum[1]);
+                    }
+                },
+                sortAscending: {
+                    name: true,
+                    price_lh: true,
+                    price_hl: false
+                }
+            });
+
+            $('.custom-filter:not(.no-count)').children('li:not(.widget-filter-reset)').each(function () {
+                var element = $(this),
+                        elementFilter = element.children('a').attr('data-filter'),
+                        elementFilterContainer = element.parents('.custom-filter').attr('data-container');
+
+                elementFilterCount = Number(jQuery(elementFilterContainer).find(elementFilter).length);
+
+                element.append('<span>' + elementFilterCount + '</span>');
+
+            });
+
+            $('.shop-sorting li').click(function () {
+                $('.shop-sorting').find('li').removeClass('active-filter');
+                $(this).addClass('active-filter');
+                var sortByValue = $(this).find('a').attr('data-sort-by');
+                $('#shop').isotope({sortBy: sortByValue});
+                return false;
+            });
+        });
+    </script>
+{% endblock%}

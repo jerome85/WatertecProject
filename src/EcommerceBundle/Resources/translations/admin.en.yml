@@ -4,6 +4,7 @@ products:
             pageTitle: Produits
             list: Products list
             number: Number
+            sku: sku
             name: Name
             price: Price
             available: Available
@@ -11,6 +12,7 @@ products:
             create: Create a new product
         new:
             pageTitle: New product
+            sku: sku
             name: name
             description: description
             price: price
@@ -56,6 +58,7 @@ media:
             update: Last update
             name: Name
             path: Path
+            product: Product
             actions: Actions
             create: Create a new media
         new: 

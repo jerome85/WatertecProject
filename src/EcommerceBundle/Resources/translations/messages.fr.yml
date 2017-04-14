@@ -33,4 +33,13 @@ default:
             L'abri Pool Up vous permet de travailler sur vos chantiers quelques soient les conditions climatiques.
             
             Il protège également l'environnement de la poussière dégagée par les travaux.
+            
+products:
+    emptyList: Aucun produit disponible
+    selectCategory: Catégories
+    sortBy: Trié par
+    name: Nom
+    price: Prix
+    asc: Plus bas au plus haut
+    desc: Plus haut au plus bas
 

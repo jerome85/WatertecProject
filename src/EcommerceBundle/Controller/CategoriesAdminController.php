@@ -42,7 +42,7 @@ class CategoriesAdminController extends Controller
             $em->persist($category);
             $em->flush();
 
-            return $this->redirectToRoute('categories_show', array('id' => $category->getId()));
+            return $this->redirectToRoute('adminCategories_show', array('id' => $category->getId()));
         }
 
         return $this->render('EcommerceBundle:Administration:categories/layout/new.html.twig', array(
