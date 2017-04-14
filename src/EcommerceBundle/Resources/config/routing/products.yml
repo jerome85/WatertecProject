@@ -1,4 +1,4 @@
 products:
     path:     /
     defaults: { _controller: "EcommerceBundle:Products:products" }
-    methods:  GET
+    methods:  [GET, POST]

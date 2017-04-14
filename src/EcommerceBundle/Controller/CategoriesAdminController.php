@@ -22,7 +22,7 @@ class CategoriesAdminController extends Controller
 
         $categories = $em->getRepository('EcommerceBundle:Categories')->findAll();
 
-        return $this->render('EcommerceBundle:Administration:categories/layout/index.html.twig', array(
+        return $this->render('EcommerceBundle:Administration:Categories/layout/index.html.twig', array(
             'categories' => $categories,
         ));
     }
@@ -45,7 +45,7 @@ class CategoriesAdminController extends Controller
             return $this->redirectToRoute('adminCategories_show', array('id' => $category->getId()));
         }
 
-        return $this->render('EcommerceBundle:Administration:categories/layout/new.html.twig', array(
+        return $this->render('EcommerceBundle:Administration:Categories/layout/new.html.twig', array(
             'category' => $category,
             'form' => $form->createView(),
         ));
@@ -59,7 +59,7 @@ class CategoriesAdminController extends Controller
     {
         $deleteForm = $this->createDeleteForm($category);
 
-        return $this->render('EcommerceBundle:Administration:categories/layout/show.html.twig', array(
+        return $this->render('EcommerceBundle:Administration:Categories/layout/show.html.twig', array(
             'category' => $category,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -81,7 +81,7 @@ class CategoriesAdminController extends Controller
             return $this->redirectToRoute('adminCategories_show', array('id' => $category->getId()));
         }
 
-        return $this->render('EcommerceBundle:Administration:categories/layout/edit.html.twig', array(
+        return $this->render('EcommerceBundle:Administration:Categories/layout/edit.html.twig', array(
             'category' => $category,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

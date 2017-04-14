@@ -43,3 +43,6 @@ products:
     asc: Plus bas au plus haut
     desc: Plus haut au plus bas
 
+search:
+    typeClick: Écrivez & Tapez Enter..
+

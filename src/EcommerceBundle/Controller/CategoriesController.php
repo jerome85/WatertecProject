@@ -11,6 +11,6 @@ class CategoriesController extends Controller
         $em = $this->getDoctrine()->getManager();
         $categories = $em->getRepository('EcommerceBundle:Categories')->findAll();
         
-        return $this->render('EcommerceBundle:Default:categories/moduleUsed/menu.html.twig', array('categories' => $categories));
+        return $this->render('EcommerceBundle:Default:Categories/moduleUsed/menu.html.twig', array('categories' => $categories));
     }
 }

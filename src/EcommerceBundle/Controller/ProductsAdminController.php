@@ -22,7 +22,7 @@ class ProductsAdminController extends Controller
 
         $products = $em->getRepository('EcommerceBundle:Products')->findAll();
 
-        return $this->render('EcommerceBundle:Administration:products/layout/index.html.twig', array(
+        return $this->render('EcommerceBundle:Administration:Products/layout/index.html.twig', array(
             'products' => $products,
         ));
     }
@@ -45,7 +45,7 @@ class ProductsAdminController extends Controller
             return $this->redirectToRoute('adminProducts_show', array('id' => $product->getId()));
         }
 
-        return $this->render('EcommerceBundle:Administration:products/layout/new.html.twig', array(
+        return $this->render('EcommerceBundle:Administration:Products/layout/new.html.twig', array(
             'product' => $product,
             'form' => $form->createView(),
         ));
@@ -59,7 +59,7 @@ class ProductsAdminController extends Controller
     {
         $deleteForm = $this->createDeleteForm($product);
 
-        return $this->render('EcommerceBundle:Administration:products/layout/show.html.twig', array(
+        return $this->render('EcommerceBundle:Administration:Products/layout/show.html.twig', array(
             'product' => $product,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -81,7 +81,7 @@ class ProductsAdminController extends Controller
             return $this->redirectToRoute('adminProducts_show', array('id' => $product->getId()));
         }
 
-        return $this->render('EcommerceBundle:Administration:products/layout/edit.html.twig', array(
+        return $this->render('EcommerceBundle:Administration:Products/layout/edit.html.twig', array(
             'product' => $product,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

@@ -22,7 +22,7 @@ class MediaAdminController extends Controller
 
         $medias = $em->getRepository('EcommerceBundle:Media')->findAll();
 
-        return $this->render('EcommerceBundle:Administration:media/layout/index.html.twig', array(
+        return $this->render('EcommerceBundle:Administration:Media/layout/index.html.twig', array(
             'medias' => $medias,
         ));
     }
@@ -46,7 +46,7 @@ class MediaAdminController extends Controller
             return $this->redirectToRoute('adminMedia_show', array('id' => $medium->getId()));
         }
 
-        return $this->render('EcommerceBundle:Administration:media/layout/new.html.twig', array(
+        return $this->render('EcommerceBundle:Administration:Media/layout/new.html.twig', array(
             'medium' => $medium,
             'form' => $form->createView(),
         ));
@@ -60,7 +60,7 @@ class MediaAdminController extends Controller
     {
         $deleteForm = $this->createDeleteForm($medium);
 
-        return $this->render('EcommerceBundle:Administration:media/layout/show.html.twig', array(
+        return $this->render('EcommerceBundle:Administration:Media/layout/show.html.twig', array(
             'media' => $medium,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -82,7 +82,7 @@ class MediaAdminController extends Controller
             return $this->redirectToRoute('adminMedia_edit', array('id' => $medium->getId()));
         }
 
-        return $this->render('EcommerceBundle:Administration:media/layout/edit.html.twig', array(
+        return $this->render('EcommerceBundle:Administration:Media/layout/edit.html.twig', array(
             'medium' => $medium,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

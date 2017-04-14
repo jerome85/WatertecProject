@@ -16,8 +16,8 @@ class ProductsController extends Controller
         
         if($request->getMethod() == 'POST')
         {
-            $form = $this->createForm(new SearchType());
-            $form->bind($request);
+            $form = $this->createForm('EcommerceBundle\Form\SearchType');
+            $form->handleRequest($request);
             $products = $em->getRepository('EcommerceBundle:Products')->search($form['search']->getData());
         } else {
             $products = $em->getRepository('EcommerceBundle:Products')->findBy(array('available' => 1)); 
@@ -49,10 +49,10 @@ class ProductsController extends Controller
                                                                                                   'cart' => $cart));
     }
     
-    public function searchAction()
+    public function searchAction(Request $request)
     {
-        
-        $form = $this->createForm(new SearchType());
+        $form = $this->createForm('EcommerceBundle\Form\SearchType');
+        $form->handleRequest($request);
         return $this->render('EcommerceBundle:Default:Search/moduleUsed/search.html.twig', array('form' => $form->createView()));
         
     }

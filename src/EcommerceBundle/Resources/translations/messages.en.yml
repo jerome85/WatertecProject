@@ -42,5 +42,8 @@ products:
     price: Price
     asc: Low to hight
     desc: Hight to low
+
+search:
+    typeClick: Type & Hit Enter..
         
 
