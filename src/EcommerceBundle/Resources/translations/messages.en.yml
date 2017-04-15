@@ -48,7 +48,25 @@ products:
         sku: Sku
         category: Category
 
-
+cart:
+    product: Product
+    unitPrice: Unit price
+    quantity: Quantity
+    total: Total
+    enterClientNumber: Enter client number..
+    clientNumber: Client number
+    proceedPaiement: Proceed paiement
+    updateCart: Update cart
+    calculateShipping: Calculate shipping
+    stateCountry: State / Country
+    postalCode: Postal code / ZIP
+    updateTotal: Update total
+    cartTotal: Cart total
+    priceHT: Price HT
+    tps: TPS
+    tvq: TVQ
+    shipping: Shipping
+    removeItem: Remove this item
 
 search:
     typeClick: Type & Hit Enter..

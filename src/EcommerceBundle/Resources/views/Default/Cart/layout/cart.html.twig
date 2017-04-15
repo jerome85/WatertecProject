@@ -30,26 +30,26 @@
                             <tr>
                                 <th class="cart-product-remove">&nbsp;</th>
                                 <th class="cart-product-thumbnail">&nbsp;</th>
-                                <th class="cart-product-name">Product</th>
-                                <th class="cart-product-price">Unit Price</th>
-                                <th class="cart-product-quantity">Quantity</th>
-                                <th class="cart-product-subtotal">Total</th>
+                                <th class="cart-product-name">{{ 'cart.product'|trans }}</th>
+                                <th class="cart-product-price">{{ 'cart.unitPrice'|trans }}</th>
+                                <th class="cart-product-quantity">{{ 'cart.quantity'|trans }}</th>
+                                <th class="cart-product-subtotal">{{ 'cart.total'|trans }}</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% if products | length == 0 %}
                                 <tr class="cart_item">
-                                    <td colspan="6">Aucun produit dans le panier</td>
+                                    <td colspan="6">{{ 'cart.noProducts'|trans }}</td>
                                 </tr>
                                 <tr class="cart_item">
-                                    <td colspan="6"><a style="float:right;" href="{{ path('products', {'_locale' : 'fr'}) }}" class="add-to-cart button nomargin">Poursuivre achat</a></td>
+                                    <td colspan="6"><a style="float:right;" href="{{ path('products', {'_locale' : 'fr'}) }}" class="add-to-cart button nomargin">{{ 'default.cart.continuePurchase'|trans }}</a></td>
                                 </tr>
                             {% else %}
                             {% for product in products %}
                                 
                             <tr class="cart_item">
                                 <td class="cart-product-remove">
-                                    <a href="{#{{ path('remove', {'_locale' : 'fr', 'id' : product.id}) }}#}" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
+                                    <a href="{#{{ path('remove', {'_locale' : 'fr', 'id' : product.id}) }}#}" class="remove" title="{{ 'cart.removeItem'|trans }}"><i class="icon-trash2"></i></a>
                                 </td>
 
                                 <td class="cart-product-thumbnail">
@@ -89,15 +89,15 @@
                                     <div class="row clearfix">
                                         <div class="col-md-4 col-xs-4 nopadding">
                                             <div class="col-md-8 col-xs-7 nopadding">
-                                                <input type="text" value="" class="sm-form-control" placeholder="Enter Coupon Code.." />
+                                                <input type="text" value="" class="sm-form-control" placeholder="{{ 'cart.enterClientNumber'|trans }}" />
                                             </div>
                                             <div class="col-md-4 col-xs-5">
-                                                <a href="#" class="button button-3d button-black nomargin">Apply Coupon</a>
+                                                <a href="#" class="button button-3d button-black nomargin">{{ 'cart.clientNumber'|trans }}</a>
                                             </div>
                                         </div>
                                         <div class="col-md-8 col-xs-8 nopadding">
-                                            <a href="#" class="button button-3d nomargin fright">Update Cart</a>
-                                            <a href="{#{{ path('shipping', {'_locale' : 'fr'}) }}#}" class="button button-3d notopmargin fright">Proceed to Checkout</a>
+                                            <a href="#" class="button button-3d nomargin fright">{{ 'cart.updateCart'|trans }}</a>
+                                            <a href="{#{{ path('shipping', {'_locale' : 'fr'}) }}#}" class="button button-3d notopmargin fright">{{ 'cart.proceedPaiement'|trans }}</a>
                                         </div>
                                     </div>
                                 </td>
@@ -113,35 +113,33 @@
                 {% if products | length != 0 %}
                 <div class="row clearfix">
                     <div class="col-md-6 clearfix">
-                        <h4>Calculate Shipping</h4>
+                        <h4>{{ 'cart.calculateShipping'|trans }}</h4>
                         <form>
                             <div class="col_full">
                                 <select class="sm-form-control">
-                                    <option value="AX">&#197;land Islands</option>
-                                    <option value="AF">Afghanistan</option>
-                                    <option value="AL">Albania</option>
+                                    <option value="CA">Canada</option>
                                 </select>
                             </div>
                             <div class="col_half">
-                                <input type="text" class="sm-form-control" placeholder="State / Country" />
+                                <input type="text" class="sm-form-control" placeholder="{{ 'cart.stateCountry'|trans }}" />
                             </div>
 
                             <div class="col_half col_last">
-                                <input type="text" class="sm-form-control" placeholder="PostCode / Zip" />
+                                <input type="text" class="sm-form-control" placeholder="{{ 'cart.postalCode'|trans }}" />
                             </div>
-                            <a href="#" class="button button-3d nomargin button-black">Update Totals</a>
+                            <a href="#" class="button button-3d nomargin button-black">{{ 'cart.updateTotal'|trans }}</a>
                         </form>
                     </div>
 
                     <div class="col-md-6 clearfix">
                         <div class="table-responsive">
-                            <h4>Cart Totals</h4>
+                            <h4>{{ 'cart.cartTotal'|trans }}</h4>
 
                             <table class="table cart">
                                 <tbody>
                                     <tr class="cart_item">
                                         <td class="cart-product-name">
-                                            <strong>Cart HT</strong>
+                                            <strong>{{ 'cart.priceHT'|trans }}</strong>
                                         </td>
 
                                         <td class="cart-product-name">
@@ -150,38 +148,38 @@
                                     </tr>
                                     <tr class="cart_item">
                                         <td class="cart-product-name">
-                                            <strong>TPS</strong>
+                                            <strong>{{ 'cart.tps'|trans }}</strong>
                                         </td>
 
                                         <td class="cart-product-name">
-                                            <span class="amount">${#{{ TPS }}#}</span>
+                                            <span class="amount">${{ TPS }}</span>
                                         </td>
                                     </tr>
                                     <tr class="cart_item">
                                         <td class="cart-product-name">
-                                            <strong>TVQ</strong>
+                                            <strong>{{ 'cart.tvq'|trans }}</strong>
                                         </td>
 
                                         <td class="cart-product-name">
-                                            <span class="amount">${#{{ TVQ }}#}</span>
+                                            <span class="amount">${{ TVQ }}</span>
                                         </td>
                                     </tr>
                                     <tr class="cart_item">
                                         <td class="cart-product-name">
-                                            <strong>Shipping</strong>
+                                            <strong>{{ 'cart.shipping'|trans }}</strong>
                                         </td>
 
                                         <td class="cart-product-name">
-                                            <span class="amount">Free Delivery</span>
+                                            <span class="amount">À voir...</span>
                                         </td>
                                     </tr>
                                     <tr class="cart_item">
                                         <td class="cart-product-name">
-                                            <strong>Total</strong>
+                                            <strong>{{ 'cart.total'|trans }}</strong>
                                         </td>
 
                                         <td class="cart-product-name">
-                                            <span class="amount color lead"><strong>${#{{ totalHT + TPS + TVQ }}#}</strong></span>
+                                            <span class="amount color lead"><strong>${{ totalHT + TPS + TVQ }}</strong></span>
                                         </td>
                                     </tr>
                                 </tbody>
