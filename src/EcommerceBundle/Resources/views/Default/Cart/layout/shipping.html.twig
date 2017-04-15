@@ -1,0 +1,119 @@
+{% extends '::layout/layout.html.twig' %}
+{% block title %}Shipping{% endblock %}
+{% block shipping %}current{% endblock %}
+
+{% block css %}<link rel="stylesheet" href="{{ asset('css/components/radio-checkbox.css') }}" type="text/css" />{% endblock %}
+
+{% block js %}<script type="text/javascript" src="{{ asset('js/components/bs-switches.js') }}"></script>{% endblock %}
+{% block body %}
+    <!-- Content
+    ============================================= -->
+    <section id="content">
+
+        <div class="content-wrap">
+
+            <div class="container clearfix">
+                {% for type, messages in app.session.flashbag.all() %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ type }}">
+                            <i class="icon-thumbs-up"></i>
+                                {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+                <div class="col_half">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            Returning customer? <a href="login-register.html">Click here to login</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col_half col_last">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            Have a coupon? <a href="login-register.html">Click here to enter your code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row clearfix">
+                    <div class="col-md-6">
+                        {% if user.adresses | length != 0 %}
+                        <form id="validation-form" name="validation-form" class="nobottommargin" action='{{ path('validation') }}' method="post">
+                            <h3>Billing Address</h3>
+                            {% for index, adresse in user.adresses %}
+                                <div>
+                                    <input id="radio1-{{ index }}" class="radio-style" name="facturation" type="radio" {% if loop.index0 == 0 %}checked=""{% endif %} value="{{ adresse.id }}"/>
+                                    <label for="radio1-{{ index }}" class="radio-style-3-label">
+                                        {{ adresse.adresse }}, {{ adresse.cp }}, {{ adresse.ville }} <a href="{{ path('removeShippingAddress', { 'id' : adresse.id }) }}" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
+                                    </label>
+                                </div>
+                            {% endfor %}
+                            <br /><br /><br />
+                            <h3>Shipping Address</h3>
+                            {% for index, adresse in user.adresses %}
+                                <div>
+                                    <input id="radio2-{{ index }}" class="radio-style" name="shipping" type="radio" {% if loop.index0 == 0 %}checked=""{% endif %} value="{{ adresse.id }}" />
+                                    <label for="radio2-{{ index }}" class="radio-style-3-label">
+                                        {{ adresse.adresse }}, {{ adresse.cp }}, {{ adresse.ville }} <a href="{{ path('removeShippingAddress', { 'id' : adresse.id }) }}" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
+                                    </label>
+                                </div>
+                            {% endfor %}
+                            <br />
+                            <button class="button button-3d button-small nomargin" type="submit">Valider</button>
+                        </form>
+                        {% endif %}
+                        
+                    </div>
+                    <div class="col-md-6">
+                        <h3 class="">New Address</h3>
+
+                        <form id="shipping-form" name="shipping-form" class="nobottommargin" action='{{ path('shipping') }}' method="post">
+
+                            <div class="col_half">
+                                {{ form_row(form.prenom, { 'attr': {'class': 'sm-form-control'} }) }}
+                            </div>
+                            <div class="col_half col_last">
+                                {{ form_row(form.nom, { 'attr': {'class': 'sm-form-control'} }) }}
+                            </div>
+                            
+                            <div class="clear"></div>
+                            
+                            <div class="col_full">
+                                {{ form_row(form.adresse, { 'attr': {'class': 'sm-form-control'} }) }}
+                            </div>
+                            
+                            <div class="col_half">
+                                {{ form_row(form.telephone, { 'attr': {'class': 'sm-form-control'} }) }}
+                            </div>
+                            
+                            <div class="col_half col_last">
+                                {{ form_row(form.cp, { 'attr': {'class': 'sm-form-control'} }) }}
+                            </div>
+                            
+                            <div class="col_half">
+                                {{ form_row(form.pays, { 'attr': {'class': 'sm-form-control'} }) }}
+                            </div>
+                            
+                            <div class="col_half col_last">
+                                {{ form_row(form.ville, { 'attr': {'class': 'sm-form-control'} }) }}
+                            </div>
+                            
+                            <div class="col_full">
+                                {{ form_row(form.complement, { 'attr': {'class': 'sm-form-control'} }) }}
+                            </div>
+                            {{ form_rest(form) }} 
+                            <button class="button button-3d button-small nomargin" type="submit">Ajouter</button>
+                              
+                        </form>
+                    </div>
+                    <div class="clear bottommargin"></div>
+                </div>   
+            </div>
+
+        </div>
+
+    </section><!-- #content end -->
+{% endblock %}
+
+

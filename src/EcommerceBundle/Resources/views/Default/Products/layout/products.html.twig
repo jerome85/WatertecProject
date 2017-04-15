@@ -40,11 +40,11 @@
                                 {% endfor %}
                                 <div class="product-overlay">
                                     {% if cart[product.id] is not defined %}
-                                        <a href="{#{{ path('add', {'_locale' : 'fr', 'id' : product.id }) }}#}" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+                                        <a href="{{ path('add', {'_locale' : 'fr', 'id' : product.id }) }}" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
                                     {% else %}
                                         <a href="#" class="add-to-cart"><i class="icon-check"></i><span> In cart</span></a>
                                     {% endif %}
-                                    <a href="{#{{ path('quickview', {'_locale' : 'fr', 'id' : product.id }) }}#}" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
+                                    <a href="{{ path('quickview', {'_locale' : app.request.locale, 'id' : product.id }) }}" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
                                 </div>
                             </div>
                             <div class="product-desc center">

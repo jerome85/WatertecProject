@@ -1,0 +1,31 @@
+<!-- Top Cart
+============================================= -->
+<div id="top-cart">
+    {% set totalHT = 0 %}
+    <a href="#" id="top-cart-trigger"><i class="icon-shopping-cart"></i><span>{{ total }}</span></a>
+    <div class="top-cart-content">
+        <div class="top-cart-title">
+            <h4>Shopping Cart</h4>
+        </div>
+        <div class="top-cart-items">
+            {% for product in products %}
+                <div class="top-cart-item clearfix">
+                    <div class="top-cart-item-image">
+                        <a href="#"><img src="{{ product.image.path }}" alt="{{ product.nom }}" /></a>
+                    </div>
+                    <div class="top-cart-item-desc">
+                        <span>{{ product.nom }}</span>
+                        <span class="top-cart-item-price">${{ product.prix * cart[product.id] }}</span>
+                        <span class="top-cart-item-quantity">x{{ cart[product.id] }}</span>
+                    </div>
+                </div>
+                {% set totalHT = totalHT + (product.prix * cart[product.id]) %}
+            {% endfor %}
+        
+        </div>
+        <div class="top-cart-action clearfix">
+            <span class="fleft top-checkout-price">${{ totalHT }}</span>
+            <button onClick="javascript:location.href='{{ path('cart', {'_locale': app.request.locale} ) }}'" class="button button-3d button-small nomargin fright">View Cart</button>
+        </div>
+    </div>
+</div><!-- #top-cart end -->

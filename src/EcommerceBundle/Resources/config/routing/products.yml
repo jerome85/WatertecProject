@@ -2,3 +2,7 @@ products:
     path:     /
     defaults: { _controller: "EcommerceBundle:Products:products" }
     methods:  [GET, POST]
+quickview:
+    path:     /view/{id}
+    defaults: { _controller: "EcommerceBundle:Products:quickview" }
+    methods:  [GET]

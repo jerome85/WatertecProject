@@ -1,0 +1,8 @@
+cart:
+    path:     /
+    defaults: { _controller: "EcommerceBundle:Cart:cart" }
+    methods:  [GET, POST]
+add:
+    path:     /add/{id}
+    defaults: { _controller: "EcommerceBundle:Cart:add" }
+    methods:  [GET, POST]

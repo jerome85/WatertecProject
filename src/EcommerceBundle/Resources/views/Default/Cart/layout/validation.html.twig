@@ -1,0 +1,152 @@
+{% extends '::layout/layout.html.twig' %}
+{% block title %}Validation{% endblock %}
+{% block cart %}current{% endblock %}
+
+{% block css %}<link rel="stylesheet" href="{{ asset('css/components/radio-checkbox.css') }}" type="text/css" />{% endblock %}
+
+{% block js %}<script type="text/javascript" src="{{ asset('js/components/bs-switches.js') }}"></script>{% endblock %}
+{% block body %}
+
+    <!-- Content
+    ============================================= -->
+    <section id="content">
+
+        <div class="content-wrap">
+
+            <div class="container clearfix">
+
+                <div class="col-md-6">
+                    <div class="table-responsive clearfix">
+                        <h4>Your Orders</h4>
+
+                        <table class="table cart">
+                            <thead>
+                                <tr>
+                                    <th class="cart-product-thumbnail">&nbsp;</th>
+                                    <th class="cart-product-name">Product</th>
+                                    <th class="cart-product-quantity">Quantity</th>
+                                    <th class="cart-product-subtotal">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                {% for product in command.command.products %}
+                                    <tr class="cart_item">
+                                        <td class="cart-product-thumbnail">
+                                            <a href="#"><img width="64" height="64" src="{{ product.img }}" alt="{{ product.alt }}"></a>
+                                        </td>
+
+                                        <td class="cart-product-name">
+                                            <a href="#">{{ product.reference }}</a>
+                                        </td>
+
+                                        <td class="cart-product-quantity">
+                                            <div class="quantity clearfix">
+                                                1x{{ product.quantity }}
+                                            </div>
+                                        </td>
+
+                                        <td class="cart-product-subtotal">
+                                            <span class="amount">${{ product.prixHT }}</span>
+                                        </td>
+                                    </tr>
+
+                                {% endfor %}
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="table-responsive">
+                        <h4>Cart Totals</h4>
+
+                        <table class="table cart">
+                            <tbody>
+                                <tr class="cart_item">
+                                    <td class="notopborder cart-product-name">
+                                        <strong>Cart Subtotal</strong>
+                                    </td>
+
+                                    <td class="notopborder cart-product-name">
+                                        <span class="amount">${{ command.command.prixHT }}</span>
+                                    </td>
+                                </tr>
+                                <tr class="cart_item">
+                                    <td class="cart-product-name">
+                                        <strong>Shipping</strong>
+                                    </td>
+
+                                    <td class="cart-product-name">
+                                        <span class="amount">Free Delivery</span>
+                                    </td>
+                                </tr>
+
+                                <tr class="cart_item">
+                                    <td class="cart-product-name">
+                                        <strong>Taxe</strong>
+                                    </td>
+
+                                    <td class="cart-product-name">
+                                        <span class="amount color lead"><strong>${{ command.command.prixTTC - command.command.prixHT }}</strong></span>
+                                    </td>
+                                </tr>
+
+                                <tr class="cart_item">
+                                    <td class="cart-product-name">
+                                        <strong>Total</strong>
+                                    </td>
+
+                                    <td class="cart-product-name">
+                                        <span class="amount color lead"><strong>${{ command.command.prixTTC }}</strong></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="container clearfix">
+                <div class="col-md-3 pull-left">
+                    <dl class="pull-left">
+                        <dt><h4>Facturation address</h4></dt>
+                        <dt>{{ command.command.facturation.prenom }} {{ command.command.facturation.nom }}</dt>
+                        <dt>{{ command.command.facturation.adresse }}</dt>
+                        <dt>{{ command.command.facturation.cp }} - {{ command.command.facturation.ville }}</dt>
+                    </dl>
+                </div>
+
+                <div class="col-md-3">
+                    <dl class="pull-left">
+                        <dt><h4>Shipping address</h4></dt>
+                        <dt>{{ command.command.shipping.prenom }} {{ command.command.shipping.nom }}</dt>
+                        <dt>{{ command.command.shipping.adresse }}</dt>
+                        <dt>{{ command.command.shipping.cp }} - {{ command.command.shipping.ville }}</dt>
+                    </dl>
+                </div>
+                    <form action="{{ path('validationCommand', {'id' : command.id} )}}" method="post">
+                        <input type="hidden" name="token" value="{{ command.command.token }}" />
+                        <input type="hidden" name="prix" value="{{ command.command.prixTTC }}" />
+                        <input type="hidden" name="date" value="{{ command.date|date('dmyhms') }}" />
+                 
+                    
+                    
+                <div class="col-md-6">
+                    <a href="{{ paypal }}" class="button button-3d fright">Pay with paypal</a>
+                    
+                    <a href="{{ path('shipping', {'_locale' : 'fr'}) }}" class="button button-3d fright">Return</a>
+                </div>
+                    </form>
+            </div>
+        </div>
+
+    </div>
+
+</section><!-- #content end -->
+{% endblock %}
+
+

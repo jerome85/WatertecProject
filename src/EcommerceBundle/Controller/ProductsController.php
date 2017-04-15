@@ -32,11 +32,11 @@ class ProductsController extends Controller
                                                                                                  'cart' => $cart));
     }
     
-    public function quickviewAction($id)
+    public function quickviewAction($id, Request $request)
     {
-        $session = $this->getRequest()->getSession();
+        $session = $request->getSession();
         $em = $this->getDoctrine()->getManager();
-        $product = $em->getRepository('EcommerceBundle:Produits')->find($id);
+        $product = $em->getRepository('EcommerceBundle:Products')->find($id);
         
         if(!$product) throw $this->createNotFoundException('La page n\'existe pas');
         

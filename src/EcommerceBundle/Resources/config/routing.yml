@@ -18,3 +18,7 @@ routingProducts:
     resource: "@EcommerceBundle/Resources/config/routing/products.yml"
     prefix: /products
     
+routingCart:
+    resource: "@EcommerceBundle/Resources/config/routing/cart.yml"
+    prefix: /cart
+    

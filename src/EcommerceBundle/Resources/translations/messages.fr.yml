@@ -42,6 +42,11 @@ products:
     price: Prix
     asc: Plus bas au plus haut
     desc: Plus haut au plus bas
+    quickview:
+        add: Ajouter
+        areadyPicked: Déjà dans le panier
+        sku: Sku
+        category: Catégorie
 
 search:
     typeClick: Écrivez & Tapez Enter..

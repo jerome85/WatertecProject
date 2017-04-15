@@ -1,0 +1,65 @@
+<div class="single-product shop-quick-view-ajax clearfix">
+
+    <div class="ajax-modal-title">
+        <h2>{{ product.name }}</h2>
+    </div>
+
+    <div class="product modal-padding clearfix">
+
+        <div class="col_half nobottommargin">
+            <div class="product-image">
+                <div class="fslider" data-pagi="false">
+                    <div class="flexslider">
+                        <div class="slider-wrap">
+                            {% for image in product.images %}
+                            <div class="slide"><img src="{{ asset('uploads/images/'~image.path) }}" alt="{{ image.name }}"></div>
+                                {# <div class="slide"><a href="{{ asset('images/shop/dress/3-1.jpg') }}" title="Pink Printed Dress - Side View"><img src="{{ asset('images/shop/dress/3-1.jpg') }}" alt="Pink Printed Dress"></a></div>
+                                <div class="slide"><a href="{{ asset('images/shop/dress/3-2.jpg') }}" title="Pink Printed Dress - Back View"><img src="{{ asset('images/shop/dress/3-2.jpg') }}" alt="Pink Printed Dress"></a></div> #}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="sale-flash">Sale!</div>
+            </div>
+        </div>
+        <div class="col_half nobottommargin col_last product-desc">
+            <div class="product-price"><del>$39.99</del> <ins>{{ product.price }}</ins></div>
+            <div class="product-rating">
+                <i class="icon-star3"></i>
+                <i class="icon-star3"></i>
+                <i class="icon-star3"></i>
+                <i class="icon-star-half-full"></i>
+                <i class="icon-star-empty"></i>
+            </div>
+            <div class="clear"></div>
+            <div class="line"></div>
+
+            <!-- Product Single - Quantity & Cart Button
+            ============================================= -->
+            {% if cart[product.id] is not defined %}
+            <form action="{#{{ path('add', {'_locale' : 'fr', 'id' : product.id} ) }}#}" class="cart nobottommargin clearfix" method="get" enctype='multipart/form-data'>
+                <div class="quantity clearfix">
+                    <input type="button" value="-" class="minus">
+                    <input type="text" step="1" min="1"  id="qty" name="qty" value="1" title="Qty" class="qty" size="4" />
+                    <input type="button" value="+" class="plus">
+                </div>
+                <button type="submit" class="add-to-cart button nomargin">{{ 'products.quickview.add'|trans }}</button>
+            </form><!-- Product Single - Quantity & Cart Button End -->
+            {% else %}
+                <a href="{{ path('cart', {'_locale' : 'fr'}) }}" class="add-to-cart button nomargin">{{ 'products.quickview.areadyPicked'|trans }}</a>
+            {% endif %}
+
+            <div class="clear"></div>
+            <div class="line"></div>
+            {{ product.description|raw }}
+            <div class="panel panel-default product-meta nobottommargin">
+                <div class="panel-body">
+                    <span itemprop="productID" class="sku_wrapper">{{ 'products.quickview.sku'|trans }}: <span class="sku">{{ product.sku }}</span></span>
+                    <span class="posted_in">{{ 'products.quickview.category'|trans }}: <a href="#" rel="tag">{{ product.category }}</a>.</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

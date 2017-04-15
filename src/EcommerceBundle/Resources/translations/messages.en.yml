@@ -42,6 +42,13 @@ products:
     price: Price
     asc: Low to hight
     desc: Hight to low
+    quickview:
+        add: Add to cart
+        areadyPicked: Already in the cart
+        sku: Sku
+        category: Category
+
+
 
 search:
     typeClick: Type & Hit Enter..
