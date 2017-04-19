@@ -12,9 +12,9 @@ use Ecommerce\EcommerceBundle\Services\Paypal;
 
 class CartController extends Controller
 {
-    public function menuAction()
+    public function menuAction(Request $request)
     {
-        $session = $this->getRequest()->getSession();
+        $session = $request->getSession();
         
         if(!$session->has('cart')){
             $total = 0;
@@ -30,7 +30,7 @@ class CartController extends Controller
         $array = array_keys($session->get('cart'));
         
         $em = $this->getDoctrine()->getManager();
-        $products = $em->getRepository('EcommerceBundle:Produits')->findArray($array);
+        $products = $em->getRepository('EcommerceBundle:Products')->findArray($array);
         
         return $this->render('EcommerceBundle:Default:Cart/moduleUsed/cart.html.twig', array('total' => $total,
                                                                                              'products' => $products,
@@ -104,7 +104,7 @@ class CartController extends Controller
             if($request->query->get('qty') != null){
                 $cart[$id] = (int)$request->query->get('qty');
             }
-            $this->get('session')->getFlashBag()->add('success', 'Quantité modifiée avec succès');
+            $this->get('session')->getFlashBag()->add('success', $this->get('translator')->trans('cart.add.qtySuccess'));
         } 
         else{
             if($request->query->get('qty') != null){
@@ -119,9 +119,9 @@ class CartController extends Controller
         return $this->redirect($this->generateUrl('cart'));
     }
     
-    public function removeAction($id)
+    public function removeAction($id, Request $request)
     {
-        $session = $this->getRequest()->getSession();
+        $session = $request->getSession();
         $cart = $session->get('cart');
         
         if(array_key_exists($id, $cart))

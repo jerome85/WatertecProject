@@ -6,3 +6,7 @@ add:
     path:     /add/{id}
     defaults: { _controller: "EcommerceBundle:Cart:add" }
     methods:  [GET, POST]
+remove:
+    path:     /remove/{id}
+    defaults: { _controller: "EcommerceBundle:Cart:remove" }
+    methods:  [GET, POST]

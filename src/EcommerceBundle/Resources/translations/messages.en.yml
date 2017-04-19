@@ -44,7 +44,7 @@ products:
     desc: Hight to low
     quickview:
         add: Add to cart
-        areadyPicked: Already in the cart
+        alreadyPicked: Already in the cart
         sku: Sku
         category: Category
 
@@ -67,6 +67,8 @@ cart:
     tvq: TVQ
     shipping: Shipping
     removeItem: Remove this item
+    add:
+        qtySuccess: Quantity modified successfully
 
 search:
     typeClick: Type & Hit Enter..

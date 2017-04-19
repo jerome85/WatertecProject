@@ -11,15 +11,16 @@
             {% for product in products %}
                 <div class="top-cart-item clearfix">
                     <div class="top-cart-item-image">
-                        <a href="#"><img src="{{ product.image.path }}" alt="{{ product.nom }}" /></a>
+                        {% set image = product.images|first %}
+                        <a href="#"><img src="{{ asset('uploads/images/'~image.path) }}" alt="{{ product.name }}" /></a>
                     </div>
                     <div class="top-cart-item-desc">
-                        <span>{{ product.nom }}</span>
-                        <span class="top-cart-item-price">${{ product.prix * cart[product.id] }}</span>
+                        <span>{{ product.name }}</span>
+                        <span class="top-cart-item-price">${{ product.price * cart[product.id] }}</span>
                         <span class="top-cart-item-quantity">x{{ cart[product.id] }}</span>
                     </div>
                 </div>
-                {% set totalHT = totalHT + (product.prix * cart[product.id]) %}
+                {% set totalHT = totalHT + (product.price * cart[product.id]) %}
             {% endfor %}
         
         </div>

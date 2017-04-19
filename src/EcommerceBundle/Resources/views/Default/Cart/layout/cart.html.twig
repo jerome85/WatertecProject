@@ -42,14 +42,14 @@
                                     <td colspan="6">{{ 'cart.noProducts'|trans }}</td>
                                 </tr>
                                 <tr class="cart_item">
-                                    <td colspan="6"><a style="float:right;" href="{{ path('products', {'_locale' : 'fr'}) }}" class="add-to-cart button nomargin">{{ 'default.cart.continuePurchase'|trans }}</a></td>
+                                    <td colspan="6"><a style="float:right;" href="{{ path('products', {'_locale' : app.request.locale}) }}" class="add-to-cart button nomargin">{{ 'default.cart.continuePurchase'|trans }}</a></td>
                                 </tr>
                             {% else %}
                             {% for product in products %}
                                 
                             <tr class="cart_item">
                                 <td class="cart-product-remove">
-                                    <a href="{#{{ path('remove', {'_locale' : 'fr', 'id' : product.id}) }}#}" class="remove" title="{{ 'cart.removeItem'|trans }}"><i class="icon-trash2"></i></a>
+                                    <a href="{{ path('remove', {'_locale' : app.request.locale, 'id' : product.id}) }}" class="remove" title="{{ 'cart.removeItem'|trans }}"><i class="icon-trash2"></i></a>
                                 </td>
 
                                 <td class="cart-product-thumbnail">
@@ -67,7 +67,7 @@
 
                                 <td class="cart-product-quantity">
                                     <div class="quantity clearfix">
-                                        <form action="{{ path('add', {'_locale' : 'fr', 'id' : product.id} ) }}" class="cart nobottommargin clearfix" method="get" enctype='multipart/form-data'>
+                                        <form action="{{ path('add', {'_locale' : app.request.locale, 'id' : product.id} ) }}" class="cart nobottommargin clearfix" method="get" enctype='multipart/form-data'>
                                             <input onChange="this.form.submit()" type="text" name="qty" value="{{ cart[product.id] }}" class="qty" />   
                                         </form>
                                     </div>
@@ -97,7 +97,7 @@
                                         </div>
                                         <div class="col-md-8 col-xs-8 nopadding">
                                             <a href="#" class="button button-3d nomargin fright">{{ 'cart.updateCart'|trans }}</a>
-                                            <a href="{#{{ path('shipping', {'_locale' : 'fr'}) }}#}" class="button button-3d notopmargin fright">{{ 'cart.proceedPaiement'|trans }}</a>
+                                            <a href="{#{{ path('shipping', {'_locale' : app.request.locale}) }}#}" class="button button-3d notopmargin fright">{{ 'cart.proceedPaiement'|trans }}</a>
                                         </div>
                                     </div>
                                 </td>

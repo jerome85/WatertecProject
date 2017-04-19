@@ -44,7 +44,7 @@ products:
     desc: Plus haut au plus bas
     quickview:
         add: Ajouter
-        areadyPicked: Déjà dans le panier
+        alreadyPicked: Déjà dans le panier
         sku: Sku
         category: Catégorie
 
@@ -67,6 +67,8 @@ cart:
     tvq: TVQ
     shipping: Frais de transport
     removeItem: Retirer cet item
+    add:
+        qtySuccess: Quantité modifiée avec succès
 
 search:
     typeClick: Écrivez & Tapez Enter..
