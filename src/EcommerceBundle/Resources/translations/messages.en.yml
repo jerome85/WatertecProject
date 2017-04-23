@@ -67,6 +67,8 @@ cart:
     tvq: TVQ
     shipping: Shipping
     removeItem: Remove this item
+    viewCart: View cart
+    shoppingCart: Shopping cart
     add:
         qtySuccess: Quantity modified successfully
 

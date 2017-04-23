@@ -67,6 +67,8 @@ cart:
     tvq: TVQ
     shipping: Frais de transport
     removeItem: Retirer cet item
+    viewCart: Voir panier
+    shoppingCart: Mon panier
     add:
         qtySuccess: Quantité modifiée avec succès
 

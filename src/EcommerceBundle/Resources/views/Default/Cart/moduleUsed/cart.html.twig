@@ -5,7 +5,7 @@
     <a href="#" id="top-cart-trigger"><i class="icon-shopping-cart"></i><span>{{ total }}</span></a>
     <div class="top-cart-content">
         <div class="top-cart-title">
-            <h4>Shopping Cart</h4>
+            <h4>{{ 'cart.shoppingCart'|trans }}</h4>
         </div>
         <div class="top-cart-items">
             {% for product in products %}
@@ -26,7 +26,7 @@
         </div>
         <div class="top-cart-action clearfix">
             <span class="fleft top-checkout-price">${{ totalHT }}</span>
-            <button onClick="javascript:location.href='{{ path('cart', {'_locale': app.request.locale} ) }}'" class="button button-3d button-small nomargin fright">View Cart</button>
+            <button onClick="javascript:location.href='{{ path('cart', {'_locale': app.request.locale} ) }}'" class="button button-3d button-small nomargin fright">{{ 'cart.viewCart'|trans }}</button>
         </div>
     </div>
 </div><!-- #top-cart end -->

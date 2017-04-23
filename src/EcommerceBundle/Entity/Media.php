@@ -49,7 +49,7 @@ class Media
     public $file;
     
     /**
-     * @ORM\ManyToOne(targetEntity="EcommerceBundle\Entity\Products", inversedBy="images", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="EcommerceBundle\Entity\Products", inversedBy="images")
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id", onDelete="CASCADE", nullable=true) 
      */
     private $product;
