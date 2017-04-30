@@ -16,7 +16,7 @@
                     </div>
                     <div class="top-cart-item-desc">
                         <span>{{ product.name }}</span>
-                        <span class="top-cart-item-price">${{ product.price * cart[product.id] }}</span>
+                        <span class="top-cart-item-price">${{ (product.price * cart[product.id])|number_format(2, ',', ' ') }}</span>
                         <span class="top-cart-item-quantity">x{{ cart[product.id] }}</span>
                     </div>
                 </div>
@@ -25,7 +25,7 @@
         
         </div>
         <div class="top-cart-action clearfix">
-            <span class="fleft top-checkout-price">${{ totalHT }}</span>
+            <span class="fleft top-checkout-price">${{ totalHT|number_format(2, ',', ' ') }}</span>
             <button onClick="javascript:location.href='{{ path('cart', {'_locale': app.request.locale} ) }}'" class="button button-3d button-small nomargin fright">{{ 'cart.viewCart'|trans }}</button>
         </div>
     </div>

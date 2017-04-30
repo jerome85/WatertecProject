@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="col_half nobottommargin col_last product-desc">
-            <div class="product-price"><del>$39.99</del> <ins>${{ product.price }}</ins></div>
+            <div class="product-price">{#<del>$39.99</del>#} <ins>${{ product.price|number_format(2, ',', ' ') }}</ins></div>
             <div class="product-rating">
                 <i class="icon-star3"></i>
                 <i class="icon-star3"></i>

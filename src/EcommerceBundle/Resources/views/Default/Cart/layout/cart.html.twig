@@ -62,7 +62,7 @@
                                 </td>
 
                                 <td class="cart-product-price">
-                                    <span class="amount">${{ product.price }}</span>
+                                    <span class="amount">${{ product.price|number_format(2, ',', ' ') }}</span>
                                 </td>
 
                                 <td class="cart-product-quantity">
@@ -74,7 +74,7 @@
                                 </td>
 
                                 <td class="cart-product-subtotal">
-                                    <span class="amount">{{ product.price * cart[product.id] }}</span>
+                                    <span class="amount">{{ (product.price * cart[product.id])|number_format(2, ',', ' ') }}</span>
                                 </td>
                             </tr>
                             
@@ -143,7 +143,7 @@
                                         </td>
 
                                         <td class="cart-product-name">
-                                            <span class="amount">${{ totalHT }}</span>
+                                            <span class="amount">${{ totalHT|number_format(2, ',', ' ') }}</span>
                                         </td>
                                     </tr>
                                     <tr class="cart_item">
@@ -152,7 +152,7 @@
                                         </td>
 
                                         <td class="cart-product-name">
-                                            <span class="amount">${{ TPS }}</span>
+                                            <span class="amount">${{ TPS|number_format(2, ',', ' ') }}</span>
                                         </td>
                                     </tr>
                                     <tr class="cart_item">
@@ -161,7 +161,7 @@
                                         </td>
 
                                         <td class="cart-product-name">
-                                            <span class="amount">${{ TVQ }}</span>
+                                            <span class="amount">${{ TVQ|number_format(2, ',', ' ') }}</span>
                                         </td>
                                     </tr>
                                     <tr class="cart_item">
@@ -179,7 +179,7 @@
                                         </td>
 
                                         <td class="cart-product-name">
-                                            <span class="amount color lead"><strong>${{ totalHT + TPS + TVQ }}</strong></span>
+                                            <span class="amount color lead"><strong>${{ (totalHT + TPS + TVQ)|number_format(2, ',', ' ') }}</strong></span>
                                         </td>
                                     </tr>
                                 </tbody>

@@ -69,6 +69,7 @@ class Products implements Translatable
     /**
      * @ORM\OneToMany(targetEntity="EcommerceBundle\Entity\Media", mappedBy="product", cascade={"remove"})
      * @ORM\JoinColumn(nullable=false)
+     * @ORM\OrderBy({"name" = "ASC"})
      */
     private $images;
     
@@ -247,8 +248,11 @@ class Products implements Translatable
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getImages()
+    public function getImages($limit = null)
     {
+        if(!is_null($limit))
+            return array_slice ($this->images, 0, $limit);
+        
         return $this->images;
     }
     
