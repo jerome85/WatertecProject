@@ -16,7 +16,7 @@ class ProductsType extends AbstractType
         $builder
             ->add('sku', null, ['attr' => ['class' => 'sm-form-control'], 
                                  'label' => 'products.new.sku'])
-            ->add('name', null, ['attr' => ['class' => 'sm-form-control'], 
+            ->add('name', null, ['attr' => ['class' => 'sm-form-control', 'maxlength' => '26'], 
                                  'label' => 'products.new.name'])
             ->add('description', null, ['attr' => ['class' => 'ckeditor'], 
                                         'label' => 'products.new.description'])
