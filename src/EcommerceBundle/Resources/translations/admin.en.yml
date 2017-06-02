@@ -76,4 +76,14 @@ media:
         show:
             pageTitle: Show media
             edit: Edit
-            
+users:
+        index:
+            name: Name
+            pageTitle: Users
+            list: Users list
+            roles: Roles
+            actions: Actions
+            client: Client
+            promote: Promote
+            administrator: Administrator
+            demote: Demote

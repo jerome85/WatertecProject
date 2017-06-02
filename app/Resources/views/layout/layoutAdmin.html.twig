@@ -71,6 +71,7 @@
                             <li class="{% block products %}{% endblock %}"><a href="{{ path('adminProducts_index', {'_locale': app.request.locale}) }}"><div>{{ 'products'|trans }}</div></a></li>
                             <li class="{% block categories %}{% endblock %}"><a href="{{ path('adminCategories_index', {'_locale': app.request.locale}) }}"><div>{{ 'categories'|trans }}</div></a></li>
                             <li class="{% block media %}{% endblock %}"><a href="{{ path('adminMedia_index', {'_locale': app.request.locale}) }}"><div>{{ 'media'|trans }}</div></a></li>
+                            <li class="{% block users %}{% endblock %}"><a href="{{ path('adminUsers_index', {'_locale': app.request.locale}) }}"><div>{{ 'users'|trans }}</div></a></li>
                             {% if app.request.locale == 'fr' %}
                                 <li>
                                     <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}">

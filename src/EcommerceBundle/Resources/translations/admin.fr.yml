@@ -76,3 +76,16 @@ media:
         show:
             pageTitle: Afficher un média
             edit: Modifier
+
+users:
+        index:
+            name: Nom
+            pageTitle: Usagers
+            list: Liste des usagers
+            roles: Roles
+            actions: Actions
+            client: Client
+            promote: Promouvoir
+            administrator: Administrateur
+            demote: Rétrograder
+            

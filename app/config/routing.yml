@@ -1,6 +1,10 @@
+users_users:
+    resource: "@UsersBundle/Controller/UsersController.php"
+    type:     annotation
+
 users:
     resource: "@UsersBundle/Resources/config/routing.yml"
-    prefix:   /{_locale}/user/
+    prefix:   /{_locale}/
     defaults: { _locale: fr }
     requirements:
         _locale: fr|en

@@ -26,7 +26,7 @@ class Products implements Translatable
     /**
      * @var string
      *
-     * @ORM\Column(name="sku", type="integer")
+     * @ORM\Column(name="sku", type="string")
      */
     private $sku;
 

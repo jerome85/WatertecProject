@@ -1,0 +1,54 @@
+{% trans_default_domain 'admin' %}
+{% extends '::layout/layoutAdmin.html.twig' %}
+
+{% block users %}current{% endblock %}
+
+{% block title %}{{ 'users.index.pageTitle'|trans }}{% endblock title %}
+
+{% block body -%}
+    
+<section id="content">
+
+    <div class="content-wrap">
+
+        <div class="container clearfix">
+            <h1>{{ 'users.index.list'|trans }}</h1>
+
+            <table class="records_list table table-striped">
+                <thead>
+                    <tr>
+                        <th>{{ 'users.index.name'|trans }}</th>
+                        <th>{{ 'users.index.roles'|trans }}</th>
+                        <th>{{ 'users.index.actions'|trans }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.username }}</td>
+                        <td>
+                            {% if 'ROLE_ADMIN' in user.roles %}
+                                {{ 'users.index.administrator'|trans }}
+                            {% else %}
+                                {{ 'users.index.client'|trans }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if 'ROLE_ADMIN' in user.roles %}
+                                <a href="{{ path('adminUsers_demote', { 'id': user.id }) }}"><i title="{{ 'users.index.demote'|trans }}" class="i-plain icon-thumbs-down" style="background-color:#D3D3D3"></i></a>
+                            {% else %}
+                                <a href="{{ path('adminUsers_promote', { 'id': user.id }) }}"><i title="{{ 'users.index.promote'|trans }}" class="i-plain icon-thumbs-up" style="background-color:#D3D3D3"></i></a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+
+
+    

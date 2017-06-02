@@ -1,3 +1,3 @@
-users_homepage:
-    path:     /
-    defaults: { _controller: UsersBundle:Users:index }
+routingUsersAdmin:
+    resource: "@UsersBundle/Resources/config/routingAdmin/users.yml"
+    prefix: /admin/users

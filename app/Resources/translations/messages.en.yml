@@ -6,6 +6,7 @@ myProfile: My profile
 changePwd: Change password
 logout: Logout
 login: Login
+users: Users
 
 #--------------------- Admin ---------------------#
 products: Products

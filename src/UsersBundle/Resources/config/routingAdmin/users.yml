@@ -1,0 +1,34 @@
+adminUsers_index:
+    path:     /
+    defaults: { _controller: "UsersBundle:UsersAdmin:index" }
+    methods:  GET
+
+adminUsers_show:
+    path:     /{id}/show
+    defaults: { _controller: "UsersBundle:UsersAdmin:show" }
+    methods:  GET
+
+adminUsers_new:
+    path:     /new
+    defaults: { _controller: "UsersBundle:UsersAdmin:new" }
+    methods:  [GET, POST]
+
+adminUsers_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "UsersBundle:UsersAdmin:edit" }
+    methods:  [GET, POST]
+
+adminUsers_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "UsersBundle:UsersAdmin:delete" }
+    methods:  DELETE
+
+adminUsers_promote:
+    path:   /{id}/promote
+    defaults: { _controller: "UsersBundle:UsersAdmin:promote" }
+    methods: GET
+
+adminUsers_demote:
+    path:   /{id}/demote
+    defaults: { _controller: "UsersBundle:UsersAdmin:demote" }
+    methods: GET
