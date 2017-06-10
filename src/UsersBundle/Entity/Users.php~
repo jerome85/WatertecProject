@@ -17,6 +17,12 @@ class Users extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="EcommerceBundle\Entity\UsersAddresses", mappedBy="user", cascade={"remove"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $addresses;
 
     public function __construct()
     {
@@ -33,4 +39,5 @@ class Users extends BaseUser
     {
         return $this->id;
     }
+    
 }

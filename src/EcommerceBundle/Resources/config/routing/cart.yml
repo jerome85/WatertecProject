@@ -2,6 +2,10 @@ cart:
     path:     /
     defaults: { _controller: "EcommerceBundle:Cart:cart" }
     methods:  [GET, POST]
+shipping:
+    path:     /shipping
+    defaults: { _controller: "EcommerceBundle:Cart:shipping" }
+    methods: [GET, POST]
 add:
     path:     /add/{id}
     defaults: { _controller: "EcommerceBundle:Cart:add" }

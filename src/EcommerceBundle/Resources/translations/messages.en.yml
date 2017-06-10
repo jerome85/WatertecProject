@@ -69,10 +69,20 @@ cart:
     removeItem: Remove this item
     viewCart: View cart
     shoppingCart: Shopping cart
+    noProducts: Empty cart
+    continuePurchase: Continue shopping
     add:
         qtySuccess: Quantity modified successfully
 
 search:
     typeClick: Type & Hit Enter..
         
-
+UsersAddresses: 
+    firstname: Firstname
+    lastname: Lastname
+    address: Address
+    phone: Phone
+    postalCode: Postal code
+    country: Country
+    city: City
+    complement: Complement

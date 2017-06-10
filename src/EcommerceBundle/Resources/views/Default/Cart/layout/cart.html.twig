@@ -42,7 +42,7 @@
                                     <td colspan="6">{{ 'cart.noProducts'|trans }}</td>
                                 </tr>
                                 <tr class="cart_item">
-                                    <td colspan="6"><a style="float:right;" href="{{ path('products', {'_locale' : app.request.locale}) }}" class="add-to-cart button nomargin">{{ 'default.cart.continuePurchase'|trans }}</a></td>
+                                    <td colspan="6"><a style="float:right;" href="{{ path('products', {'_locale' : app.request.locale}) }}" class="add-to-cart button nomargin">{{ 'cart.continuePurchase'|trans }}</a></td>
                                 </tr>
                             {% else %}
                             {% for product in products %}
@@ -97,7 +97,7 @@
                                         </div>
                                         <div class="col-md-8 col-xs-8 nopadding">
                                             <a href="#" class="button button-3d nomargin fright">{{ 'cart.updateCart'|trans }}</a>
-                                            <a href="{#{{ path('shipping', {'_locale' : app.request.locale}) }}#}" class="button button-3d notopmargin fright">{{ 'cart.proceedPaiement'|trans }}</a>
+                                            <a href="{{ path('shipping', {'_locale' : app.request.locale}) }}" class="button button-3d notopmargin fright">{{ 'cart.proceedPaiement'|trans }}</a>
                                         </div>
                                     </div>
                                 </td>

@@ -17,6 +17,12 @@ class Users extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="EcommerceBundle\Entity\UsersAddresses", mappedBy="user", cascade={"remove"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $addresses;
 
     public function __construct()
     {
@@ -34,4 +40,38 @@ class Users extends BaseUser
         return $this->id;
     }
     
+
+    /**
+     * Add address
+     *
+     * @param \EcommerceBundle\Entity\UsersAddresses $address
+     *
+     * @return Users
+     */
+    public function addAddress(\EcommerceBundle\Entity\UsersAddresses $address)
+    {
+        $this->addresses[] = $address;
+
+        return $this;
+    }
+
+    /**
+     * Remove address
+     *
+     * @param \EcommerceBundle\Entity\UsersAddresses $address
+     */
+    public function removeAddress(\EcommerceBundle\Entity\UsersAddresses $address)
+    {
+        $this->addresses->removeElement($address);
+    }
+
+    /**
+     * Get addresses
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAddresses()
+    {
+        return $this->addresses;
+    }
 }

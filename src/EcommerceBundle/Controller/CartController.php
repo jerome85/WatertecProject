@@ -6,9 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
-use Ecommerce\EcommerceBundle\Form\UtilisateursAdressesType;
-use Ecommerce\EcommerceBundle\Entity\UtilisateursAdresses;
-use Ecommerce\EcommerceBundle\Services\Paypal;
+use EcommerceBundle\Form\UsersAddressesType;
+use EcommerceBundle\Entity\UsersAddresses;
+//use Ecommerce\EcommerceBundle\Services\Paypal;
 
 class CartController extends Controller
 {
@@ -52,27 +52,28 @@ class CartController extends Controller
                                                                                         ));
     }
     
-    public function shippingAction()
+    public function shippingAction(Request $request)
     {
-        $user = $this->container->get('security.context')->getToken()->getUser();
-        $entity = new UtilisateursAdresses();
-        $form = $this->createForm(new UtilisateursAdressesType(), $entity);
-        
-        if($this->get('request')->getMethod() == 'POST')
-        {
-            $form->handleRequest($this->getRequest());
-            if($form->isValid()){
-                $em = $this->getDoctrine()->getManager();
-                $entity->setUser($user);
-                $em->persist($entity);
-                $em->flush();
-                $this->get('session')->getFlashBag()->add('success', 'Adresse ajoutée avec succès');
-                
-                return $this->redirect($this->generateUrl('shipping'));
-            }else{
-                print_r($form->getErrors());
-            }
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
         }
+
+        // the above is a shortcut for this
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $entity = new UsersAddresses();
+        $form = $this->createForm('EcommerceBundle\Form\UsersAddressesType', $entity);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $entity->setUser($user);
+            $em->persist($entity);
+            $em->flush();
+            $this->get('session')->getFlashBag()->add('success', 'Adresse ajoutée avec succès');
+
+            return $this->redirect($this->generateUrl('shipping'));
+        }
+        
         
         return $this->render('EcommerceBundle:Default:Cart/layout/shipping.html.twig', array('user' => $user,
                                                                                              'form' => $form->createView()));

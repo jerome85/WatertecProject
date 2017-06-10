@@ -38,24 +38,24 @@
 
                 <div class="row clearfix">
                     <div class="col-md-6">
-                        {% if user.adresses | length != 0 %}
-                        <form id="validation-form" name="validation-form" class="nobottommargin" action='{{ path('validation') }}' method="post">
+                        {% if user.addresses | length != 0 %}
+                        <form id="validation-form" name="validation-form" class="nobottommargin" action='{#{{ path('validation') }}#}' method="post">
                             <h3>Billing Address</h3>
-                            {% for index, adresse in user.adresses %}
+                            {% for index, address in user.addresses %}
                                 <div>
-                                    <input id="radio1-{{ index }}" class="radio-style" name="facturation" type="radio" {% if loop.index0 == 0 %}checked=""{% endif %} value="{{ adresse.id }}"/>
+                                    <input id="radio1-{{ index }}" class="radio-style" name="facturation" type="radio" {% if loop.index0 == 0 %}checked=""{% endif %} value="{{ address.id }}"/>
                                     <label for="radio1-{{ index }}" class="radio-style-3-label">
-                                        {{ adresse.adresse }}, {{ adresse.cp }}, {{ adresse.ville }} <a href="{{ path('removeShippingAddress', { 'id' : adresse.id }) }}" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
+                                        {{ address.address }}, {{ address.postalCode }}, {{ address.city }} <a href="{#{{ path('removeShippingAddress', { 'id' : address.id }) }}#}" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
                                     </label>
                                 </div>
                             {% endfor %}
                             <br /><br /><br />
                             <h3>Shipping Address</h3>
-                            {% for index, adresse in user.adresses %}
+                            {% for index, address in user.addresses %}
                                 <div>
-                                    <input id="radio2-{{ index }}" class="radio-style" name="shipping" type="radio" {% if loop.index0 == 0 %}checked=""{% endif %} value="{{ adresse.id }}" />
+                                    <input id="radio2-{{ index }}" class="radio-style" name="shipping" type="radio" {% if loop.index0 == 0 %}checked=""{% endif %} value="{{ address.id }}" />
                                     <label for="radio2-{{ index }}" class="radio-style-3-label">
-                                        {{ adresse.adresse }}, {{ adresse.cp }}, {{ adresse.ville }} <a href="{{ path('removeShippingAddress', { 'id' : adresse.id }) }}" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
+                                        {{ address.address }}, {{ address.postalCode }}, {{ address.city }} <a href="{#{{ path('removeShippingAddress', { 'id' : address.id }) }}#}" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
                                     </label>
                                 </div>
                             {% endfor %}
@@ -71,32 +71,32 @@
                         <form id="shipping-form" name="shipping-form" class="nobottommargin" action='{{ path('shipping') }}' method="post">
 
                             <div class="col_half">
-                                {{ form_row(form.prenom, { 'attr': {'class': 'sm-form-control'} }) }}
+                                {{ form_row(form.firstname, { 'attr': {'class': 'sm-form-control'} }) }}
                             </div>
                             <div class="col_half col_last">
-                                {{ form_row(form.nom, { 'attr': {'class': 'sm-form-control'} }) }}
+                                {{ form_row(form.lastname, { 'attr': {'class': 'sm-form-control'} }) }}
                             </div>
                             
                             <div class="clear"></div>
                             
                             <div class="col_full">
-                                {{ form_row(form.adresse, { 'attr': {'class': 'sm-form-control'} }) }}
+                                {{ form_row(form.address, { 'attr': {'class': 'sm-form-control'} }) }}
                             </div>
                             
                             <div class="col_half">
-                                {{ form_row(form.telephone, { 'attr': {'class': 'sm-form-control'} }) }}
+                                {{ form_row(form.phone, { 'attr': {'class': 'sm-form-control'} }) }}
                             </div>
                             
                             <div class="col_half col_last">
-                                {{ form_row(form.cp, { 'attr': {'class': 'sm-form-control'} }) }}
+                                {{ form_row(form.postalCode, { 'attr': {'class': 'sm-form-control'} }) }}
                             </div>
                             
                             <div class="col_half">
-                                {{ form_row(form.pays, { 'attr': {'class': 'sm-form-control'} }) }}
+                                {{ form_row(form.country, { 'attr': {'class': 'sm-form-control'} }) }}
                             </div>
                             
                             <div class="col_half col_last">
-                                {{ form_row(form.ville, { 'attr': {'class': 'sm-form-control'} }) }}
+                                {{ form_row(form.city, { 'attr': {'class': 'sm-form-control'} }) }}
                             </div>
                             
                             <div class="col_full">

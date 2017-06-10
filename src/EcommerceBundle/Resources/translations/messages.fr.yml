@@ -69,9 +69,21 @@ cart:
     removeItem: Retirer cet item
     viewCart: Voir panier
     shoppingCart: Mon panier
+    noProducts: Aucun produit dans le panier
+    continuePurchase: Poursuivre achat
     add:
         qtySuccess: Quantité modifiée avec succès
 
 search:
     typeClick: Écrivez & Tapez Enter..
+
+usersAddresses: 
+    firstname: Prénom
+    lastname: Nom
+    address: Adresse
+    phone: Téléphone
+    postalCode: Code postal
+    country: Pays
+    city: Ville
+    complement: Complément
 
