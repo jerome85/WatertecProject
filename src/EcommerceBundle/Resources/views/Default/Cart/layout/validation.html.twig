@@ -30,10 +30,11 @@
                             </thead>
                             <tbody>
 
-                                {% for product in command.command.products %}
+                                {% for product in order.orderDesc.products %}
                                     <tr class="cart_item">
                                         <td class="cart-product-thumbnail">
-                                            <a href="#"><img width="64" height="64" src="{{ product.img }}" alt="{{ product.alt }}"></a>
+                                            {% set image = product.images|first %}
+                                            <a href="#"><img width="64" height="64" src="{{ asset('uploads/images/'~image.path) }}" alt="{{ image.name }}"></a>
                                         </td>
 
                                         <td class="cart-product-name">
@@ -47,7 +48,7 @@
                                         </td>
 
                                         <td class="cart-product-subtotal">
-                                            <span class="amount">${{ product.prixHT }}</span>
+                                            <span class="amount">${{ product.priceHT }}</span>
                                         </td>
                                     </tr>
 
@@ -71,7 +72,7 @@
                                     </td>
 
                                     <td class="notopborder cart-product-name">
-                                        <span class="amount">${{ command.command.prixHT }}</span>
+                                        <span class="amount">${{ order.orderDesc.priceHT }}</span>
                                     </td>
                                 </tr>
                                 <tr class="cart_item">
@@ -90,7 +91,7 @@
                                     </td>
 
                                     <td class="cart-product-name">
-                                        <span class="amount color lead"><strong>${{ command.command.prixTTC - command.command.prixHT }}</strong></span>
+                                        <span class="amount color lead"><strong>${{ order.orderDesc.priceTTC - order.orderDesc.priceHT }}</strong></span>
                                     </td>
                                 </tr>
 
@@ -100,7 +101,7 @@
                                     </td>
 
                                     <td class="cart-product-name">
-                                        <span class="amount color lead"><strong>${{ command.command.prixTTC }}</strong></span>
+                                        <span class="amount color lead"><strong>${{ order.orderDesc.priceTTC }}</strong></span>
                                     </td>
                                 </tr>
                             </tbody>
@@ -114,29 +115,29 @@
                 <div class="col-md-3 pull-left">
                     <dl class="pull-left">
                         <dt><h4>Facturation address</h4></dt>
-                        <dt>{{ command.command.facturation.prenom }} {{ command.command.facturation.nom }}</dt>
-                        <dt>{{ command.command.facturation.adresse }}</dt>
-                        <dt>{{ command.command.facturation.cp }} - {{ command.command.facturation.ville }}</dt>
+                        <dt>{{ order.orderDesc.billing.firstname }} {{ order.orderDesc.billing.lastname }}</dt>
+                        <dt>{{ order.orderDesc.billing.address }}</dt>
+                        <dt>{{ order.orderDesc.billing.postalCode }} - {{ order.orderDesc.billing.city }}</dt>
                     </dl>
                 </div>
 
                 <div class="col-md-3">
                     <dl class="pull-left">
                         <dt><h4>Shipping address</h4></dt>
-                        <dt>{{ command.command.shipping.prenom }} {{ command.command.shipping.nom }}</dt>
-                        <dt>{{ command.command.shipping.adresse }}</dt>
-                        <dt>{{ command.command.shipping.cp }} - {{ command.command.shipping.ville }}</dt>
+                        <dt>{{ order.orderDesc.shipping.firstname }} {{ order.orderDesc.shipping.lastname }}</dt>
+                        <dt>{{ order.orderDesc.shipping.address }}</dt>
+                        <dt>{{ order.orderDesc.shipping.postalCode }} - {{ order.orderDesc.shipping.city }}</dt>
                     </dl>
                 </div>
-                    <form action="{{ path('validationCommand', {'id' : command.id} )}}" method="post">
-                        <input type="hidden" name="token" value="{{ command.command.token }}" />
-                        <input type="hidden" name="prix" value="{{ command.command.prixTTC }}" />
-                        <input type="hidden" name="date" value="{{ command.date|date('dmyhms') }}" />
+                    <form action="{#{{ path('validationCommand', {'id' : order.id} )}}#}" method="post">
+                        <input type="hidden" name="token" value="{{ order.orderDesc.token }}" />
+                        <input type="hidden" name="prix" value="{{ order.orderDesc.priceTTC }}" />
+                        <input type="hidden" name="date" value="{{ order.date|date('dmyhms') }}" />
                  
                     
                     
                 <div class="col-md-6">
-                    <a href="{{ paypal }}" class="button button-3d fright">Pay with paypal</a>
+                    <a href="{#{{ paypal }}#}" class="button button-3d fright">Pay with paypal</a>
                     
                     <a href="{{ path('shipping', {'_locale' : 'fr'}) }}" class="button button-3d fright">Return</a>
                 </div>

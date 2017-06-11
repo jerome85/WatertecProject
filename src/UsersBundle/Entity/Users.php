@@ -23,6 +23,12 @@ class Users extends BaseUser
      * @ORM\JoinColumn(nullable=true)
      */
     private $addresses;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="EcommerceBundle\Entity\Orders", mappedBy="user", cascade={"remove"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $orders;
 
     public function __construct()
     {
@@ -73,5 +79,39 @@ class Users extends BaseUser
     public function getAddresses()
     {
         return $this->addresses;
+    }
+
+    /**
+     * Add order
+     *
+     * @param \EcommerceBundle\Entity\Orders $order
+     *
+     * @return Users
+     */
+    public function addOrder(\EcommerceBundle\Entity\Orders $order)
+    {
+        $this->orders[] = $order;
+
+        return $this;
+    }
+
+    /**
+     * Remove order
+     *
+     * @param \EcommerceBundle\Entity\Orders $order
+     */
+    public function removeOrder(\EcommerceBundle\Entity\Orders $order)
+    {
+        $this->orders->removeElement($order);
+    }
+
+    /**
+     * Get orders
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getOrders()
+    {
+        return $this->orders;
     }
 }

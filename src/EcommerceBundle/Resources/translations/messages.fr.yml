@@ -87,3 +87,14 @@ usersAddresses:
     city: Ville
     complement: Complément
 
+shipping:
+    chooseAddress: Choisissez l'adresse de livraison et l'adresse de facturation
+    billingAddress: Adresse de facturation
+    shippingAddress: Adresse de livraison 
+    validate: Valider
+    addAddress: Ajouter une nouvelle adresse
+    newAddress: Nouvelle adresse
+    add: Ajouter
+    addressRemoveSuccess: L'adresse a été supprimée avec succès 
+    
+

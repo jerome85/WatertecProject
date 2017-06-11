@@ -86,3 +86,14 @@ UsersAddresses:
     country: Country
     city: City
     complement: Complement
+    
+shipping:
+    chooseAddress: Choose a shipping address and a billing address
+    billingAddress: Billing address
+    shippingAddress: Shipping address 
+    validate: Validate
+    addAddress: Add a new address
+    newAddress: New address
+    add: Add
+    addressRemoveSuccess: Address removed successfully
+

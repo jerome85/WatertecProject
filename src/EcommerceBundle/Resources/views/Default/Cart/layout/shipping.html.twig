@@ -24,14 +24,14 @@
                 <div class="col_half">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            Returning customer? <a href="login-register.html">Click here to login</a>
+                            {{ 'shipping.chooseAddress'|trans }}
                         </div>
                     </div>
                 </div>
                 <div class="col_half col_last">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            Have a coupon? <a href="login-register.html">Click here to enter your code</a>
+                            {{ 'shipping.addAddress'|trans }}
                         </div>
                     </div>
                 </div>
@@ -39,34 +39,34 @@
                 <div class="row clearfix">
                     <div class="col-md-6">
                         {% if user.addresses | length != 0 %}
-                        <form id="validation-form" name="validation-form" class="nobottommargin" action='{#{{ path('validation') }}#}' method="post">
-                            <h3>Billing Address</h3>
+                        <form id="validation-form" name="validation-form" class="nobottommargin" action='{{ path('validation') }}' method="post">
+                            <h3>{{ 'shipping.billingAddress'|trans }}</h3>
                             {% for index, address in user.addresses %}
                                 <div>
-                                    <input id="radio1-{{ index }}" class="radio-style" name="facturation" type="radio" {% if loop.index0 == 0 %}checked=""{% endif %} value="{{ address.id }}"/>
+                                    <input id="radio1-{{ index }}" class="radio-style" name="billing" type="radio" {% if loop.index0 == 0 %}checked=""{% endif %} value="{{ address.id }}"/>
                                     <label for="radio1-{{ index }}" class="radio-style-3-label">
-                                        {{ address.address }}, {{ address.postalCode }}, {{ address.city }} <a href="{#{{ path('removeShippingAddress', { 'id' : address.id }) }}#}" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
+                                        {{ address.address }}, {{ address.postalCode }}, {{ address.city }} <a href="{{ path('removeShippingAddress', { 'id' : address.id }) }}" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
                                     </label>
                                 </div>
                             {% endfor %}
                             <br /><br /><br />
-                            <h3>Shipping Address</h3>
+                            <h3>{{ 'shipping.shippingAddress'|trans }}</h3>
                             {% for index, address in user.addresses %}
                                 <div>
                                     <input id="radio2-{{ index }}" class="radio-style" name="shipping" type="radio" {% if loop.index0 == 0 %}checked=""{% endif %} value="{{ address.id }}" />
                                     <label for="radio2-{{ index }}" class="radio-style-3-label">
-                                        {{ address.address }}, {{ address.postalCode }}, {{ address.city }} <a href="{#{{ path('removeShippingAddress', { 'id' : address.id }) }}#}" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
+                                        {{ address.address }}, {{ address.postalCode }}, {{ address.city }} <a href="{{ path('removeShippingAddress', { 'id' : address.id }) }}" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
                                     </label>
                                 </div>
                             {% endfor %}
                             <br />
-                            <button class="button button-3d button-small nomargin" type="submit">Valider</button>
+                            <button class="button button-3d button-small nomargin" type="submit">{{ 'shipping.validate'|trans }}</button>
                         </form>
                         {% endif %}
                         
                     </div>
                     <div class="col-md-6">
-                        <h3 class="">New Address</h3>
+                        <h3 class="">{{ 'shipping.newAddress'|trans }}</h3>
 
                         <form id="shipping-form" name="shipping-form" class="nobottommargin" action='{{ path('shipping') }}' method="post">
 
@@ -103,7 +103,7 @@
                                 {{ form_row(form.complement, { 'attr': {'class': 'sm-form-control'} }) }}
                             </div>
                             {{ form_rest(form) }} 
-                            <button class="button button-3d button-small nomargin" type="submit">Ajouter</button>
+                            <button class="button button-3d button-small nomargin" type="submit">{{ 'shipping.add'|trans }}</button>
                               
                         </form>
                     </div>

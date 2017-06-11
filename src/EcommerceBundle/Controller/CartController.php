@@ -82,16 +82,15 @@ class CartController extends Controller
     public function removeAddressAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('EcommerceBundle:UtilisateursAdresses')->find($id);
-        
-        if ($this->container->get('security.context')->getToken()->getUser() != $entity->getUser() || !$entity) 
+        $entity = $em->getRepository('EcommerceBundle:UsersAddresses')->find($id);
+        if ($this->get('security.token_storage')->getToken()->getUser() != $entity->getUser() || !$entity) 
         {
             return $this->redirect($this->generateUrl('shipping'));
         }
 
         $em->remove($entity);
         $em->flush();
-        $this->get('session')->getFlashBag()->add('success', 'Adresse retirée avec succès');
+        $this->get('session')->getFlashBag()->add('success', $this->get('translator')->trans('shipping.addressRemoveSuccess'));
         return $this->redirect($this->generateUrl('shipping'));
     }
    
@@ -137,16 +136,16 @@ class CartController extends Controller
         
     }
     
-    public function setShippingSession()
+    public function setShippingSession($request)
     {
-        $session = $this->getRequest()->getSession();
+        $session = $request->getSession();
         
         if(!$session->has('address')) $session->set('address', array());
         $address = $session->get('address');
         
-        if($this->getRequest()->request->get('shipping') != null && $this->getRequest()->request->get('facturation') != null){
-            $address['shipping'] = $this->getRequest()->request->get('shipping');
-            $address['facturation'] = $this->getRequest()->request->get('facturation');
+        if($request->request->get('shipping') != null && $request->request->get('billing') != null){
+            $address['shipping'] = $request->request->get('shipping');
+            $address['billing'] = $request->request->get('billing');
         }else{
             return $this->redirect($this->generateUrl('shipping'));
         }
@@ -155,69 +154,66 @@ class CartController extends Controller
         return $this->redirect($this->generateUrl('validation'));
     }
     
-    public function validationAction()
+    public function validationAction(Request $request)
     {
-        if($this->get('request')->getMethod() == 'POST'){
-            $this->setShippingSession();
+        if($request->getMethod() == 'POST'){
+            $this->setShippingSession($request);
         }
         
-        $port = '10.0';
         
         $em = $this->getDoctrine()->getManager();
-        $setCommand = $this->forward('EcommerceBundle:Commands:setCommand');
-        $command = $em->getRepository('EcommerceBundle:Commandes')->find($setCommand->getContent());
-        $details = $command->getCommand();
-        
-        //print_r($details);die;
-        
-        $products = array(
-            array('name' => 'produit1',
-                  'price' => 10.0,
-                  'priceTVA' => 12.0,
-                  'count' => 1),
-            array('name' => 'produit2',
-                  'price' => 25.5,
-                  'priceTVA' => 30.50,
-                  'count' => 2)
-        );
-        $total = 61.0;
-        $totalttc = 73.0;
-        $tax = $details['prixTTC'] - $details['prixHT'];
-        //$port = 10.0;
-        
-        $url = $this->generateUrl('validationCommand', array('id' => $command->getId()));
-        $url = 'http://'.$_SERVER['HTTP_HOST'].$url;
-        
-        $paypal = new Paypal();
-        $params = array(
-                    'RETURNURL' => $url,
-                    'CANCELURL' => $url,
-            
-                    'PAYMENTREQUEST_0_AMT' => $details['prixHT'] + $tax,
-                    'PAYMENTREQUEST_0_CURRENCYCODE' => 'CAD',
-                    'PAYMENTREQUEST_0_TAXAMT' => $tax,
-                    //'PAYMENTREQUEST_0_SHIPPINGAMT' => $port,
-                    'PAYMENTREQUEST_0_ITEMAMT' => $details['prixHT']
-                 );
-        
-        $i=0;
-        foreach ($details['products'] as $product){
-            $params["L_PAYMENTREQUEST_0_NAME$i"] = $product['reference'];
-            $params["L_PAYMENTREQUEST_0_DESC$i"] = '';
-            $params["L_PAYMENTREQUEST_0_AMT$i"] = $product['prixHT'];
-            $params["L_PAYMENTREQUEST_0_QTY$i"] = $product['quantity'];
-            $i++;
-        }
-        $response = $paypal->request('SetExpressCheckout', $params);
-        
-        if($response){
-            $paypal = 'https://www.sandbox.paypal.com/webscr?cmd=_express-checkout&useraction=commit&token='.$response['TOKEN'];
-        }else{
-            var_dump($paypal->errors);
-            die('Erreur ');
-        }
+        $setOrderDesc = $this->forward('EcommerceBundle:Orders:setOrderDesc');
+        $order = $em->getRepository('EcommerceBundle:Orders')->find($setOrderDesc->getContent());
+        $details = $order->getOrderDesc();
 
-        return $this->render('EcommerceBundle:Default:Cart/layout/validation.html.twig', array( 'command' => $command,
-                                                                                                'paypal' => $paypal));
+//        
+//        $products = array(
+//            array('name' => 'produit1',
+//                  'price' => 10.0,
+//                  'priceTVA' => 12.0,
+//                  'count' => 1),
+//            array('name' => 'produit2',
+//                  'price' => 25.5,
+//                  'priceTVA' => 30.50,
+//                  'count' => 2)
+//        );
+//        $total = 61.0;
+//        $totalttc = 73.0;
+//        $tax = $details['prixTTC'] - $details['prixHT'];
+//        //$port = 10.0;
+        
+//        $url = $this->generateUrl('validationCommand', array('id' => $command->getId()));
+//        $url = 'http://'.$_SERVER['HTTP_HOST'].$url;
+//        
+//        $paypal = new Paypal();
+//        $params = array(
+//                    'RETURNURL' => $url,
+//                    'CANCELURL' => $url,
+//            
+//                    'PAYMENTREQUEST_0_AMT' => $details['prixHT'] + $tax,
+//                    'PAYMENTREQUEST_0_CURRENCYCODE' => 'CAD',
+//                    'PAYMENTREQUEST_0_TAXAMT' => $tax,
+//                    //'PAYMENTREQUEST_0_SHIPPINGAMT' => $port,
+//                    'PAYMENTREQUEST_0_ITEMAMT' => $details['prixHT']
+//                 );
+//        
+//        $i=0;
+//        foreach ($details['products'] as $product){
+//            $params["L_PAYMENTREQUEST_0_NAME$i"] = $product['reference'];
+//            $params["L_PAYMENTREQUEST_0_DESC$i"] = '';
+//            $params["L_PAYMENTREQUEST_0_AMT$i"] = $product['prixHT'];
+//            $params["L_PAYMENTREQUEST_0_QTY$i"] = $product['quantity'];
+//            $i++;
+//        }
+//        $response = $paypal->request('SetExpressCheckout', $params);
+//        
+//        if($response){
+//            $paypal = 'https://www.sandbox.paypal.com/webscr?cmd=_express-checkout&useraction=commit&token='.$response['TOKEN'];
+//        }else{
+//            var_dump($paypal->errors);
+//            die('Erreur ');
+//        }
+
+        return $this->render('EcommerceBundle:Default:Cart/layout/validation.html.twig', array( 'order' => $order));
     }
 }

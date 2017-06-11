@@ -14,3 +14,14 @@ remove:
     path:     /remove/{id}
     defaults: { _controller: "EcommerceBundle:Cart:remove" }
     methods:  [GET, POST]
+    
+removeShippingAddress:
+    path:     /shipping/remove/address/{id}
+    defaults: { _controller: "EcommerceBundle:Cart:removeAddress" }
+    methods:  [GET, POST]
+
+validation:
+    path:     /validation
+    defaults: { _controller: "EcommerceBundle:Cart:validation" }
+    methods:  [GET, POST]
+    
