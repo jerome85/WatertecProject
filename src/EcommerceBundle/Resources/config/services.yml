@@ -4,3 +4,13 @@ services:
         public: false
         tags:
             - { name: twig.extension }
+    
+    paypal:
+        class: EcommerceBundle\Services\Paypal
+        arguments: []
+        
+    setNewReference:
+        class: EcommerceBundle\Services\GetReference
+        arguments: ["@security.token_storage", "@doctrine.orm.entity_manager"]
+
+        

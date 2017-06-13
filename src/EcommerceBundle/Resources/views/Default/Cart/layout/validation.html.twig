@@ -4,7 +4,9 @@
 
 {% block css %}<link rel="stylesheet" href="{{ asset('css/components/radio-checkbox.css') }}" type="text/css" />{% endblock %}
 
-{% block js %}<script type="text/javascript" src="{{ asset('js/components/bs-switches.js') }}"></script>{% endblock %}
+{% block script %}
+    <script type="text/javascript" src="{{ asset('js/components/bs-switches.js') }}"></script>
+{% endblock %}
 {% block body %}
 
     <!-- Content
@@ -17,15 +19,15 @@
 
                 <div class="col-md-6">
                     <div class="table-responsive clearfix">
-                        <h4>Your Orders</h4>
+                        <h4>{{ 'cart.validation.yourOrders'|trans }}</h4>
 
                         <table class="table cart">
                             <thead>
                                 <tr>
                                     <th class="cart-product-thumbnail">&nbsp;</th>
-                                    <th class="cart-product-name">Product</th>
-                                    <th class="cart-product-quantity">Quantity</th>
-                                    <th class="cart-product-subtotal">Total</th>
+                                    <th class="cart-product-name">{{ 'cart.validation.product'|trans }}</th>
+                                    <th class="cart-product-quantity">{{ 'cart.validation.quantity'|trans }}</th>
+                                    <th class="cart-product-subtotal">{{ 'cart.validation.total'|trans }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -62,13 +64,13 @@
                 </div>
                 <div class="col-md-6">
                     <div class="table-responsive">
-                        <h4>Cart Totals</h4>
+                        <h4>{{ 'cart.validation.cartTotal'|trans }}</h4>
 
                         <table class="table cart">
                             <tbody>
                                 <tr class="cart_item">
                                     <td class="notopborder cart-product-name">
-                                        <strong>Cart Subtotal</strong>
+                                        <strong>{{ 'cart.validation.subtotal'|trans }}</strong>
                                     </td>
 
                                     <td class="notopborder cart-product-name">
@@ -77,17 +79,17 @@
                                 </tr>
                                 <tr class="cart_item">
                                     <td class="cart-product-name">
-                                        <strong>Shipping</strong>
+                                        <strong>{{ 'cart.validation.shipping'|trans }}</strong>
                                     </td>
 
                                     <td class="cart-product-name">
-                                        <span class="amount">Free Delivery</span>
+                                        <span class="amount">{{ 'cart.validation.freeDelivery'|trans }}</span>
                                     </td>
                                 </tr>
 
                                 <tr class="cart_item">
                                     <td class="cart-product-name">
-                                        <strong>Taxe</strong>
+                                        <strong>{{ 'cart.validation.taxe'|trans }}</strong>
                                     </td>
 
                                     <td class="cart-product-name">
@@ -97,7 +99,7 @@
 
                                 <tr class="cart_item">
                                     <td class="cart-product-name">
-                                        <strong>Total</strong>
+                                        <strong>{{ 'cart.validation.total'|trans }}</strong>
                                     </td>
 
                                     <td class="cart-product-name">
@@ -114,7 +116,7 @@
             <div class="container clearfix">
                 <div class="col-md-3 pull-left">
                     <dl class="pull-left">
-                        <dt><h4>Facturation address</h4></dt>
+                        <dt><h4>{{ 'cart.validation.billingAddress'|trans }}</h4></dt>
                         <dt>{{ order.orderDesc.billing.firstname }} {{ order.orderDesc.billing.lastname }}</dt>
                         <dt>{{ order.orderDesc.billing.address }}</dt>
                         <dt>{{ order.orderDesc.billing.postalCode }} - {{ order.orderDesc.billing.city }}</dt>
@@ -123,7 +125,7 @@
 
                 <div class="col-md-3">
                     <dl class="pull-left">
-                        <dt><h4>Shipping address</h4></dt>
+                        <dt><h4>{{ 'cart.validation.shippingAddress'|trans }}</h4></dt>
                         <dt>{{ order.orderDesc.shipping.firstname }} {{ order.orderDesc.shipping.lastname }}</dt>
                         <dt>{{ order.orderDesc.shipping.address }}</dt>
                         <dt>{{ order.orderDesc.shipping.postalCode }} - {{ order.orderDesc.shipping.city }}</dt>
@@ -137,9 +139,9 @@
                     
                     
                 <div class="col-md-6">
-                    <a href="{#{{ paypal }}#}" class="button button-3d fright">Pay with paypal</a>
+                    <a href="{{ paypal }}" class="button button-3d fright">{{ 'cart.validation.paypalPaiement'|trans }}</a>
                     
-                    <a href="{{ path('shipping', {'_locale' : 'fr'}) }}" class="button button-3d fright">Return</a>
+                    <a href="{{ path('shipping', {'_locale' : 'fr'}) }}" class="button button-3d fright">{{ 'cart.validation.back'|trans }}</a>
                 </div>
                     </form>
             </div>

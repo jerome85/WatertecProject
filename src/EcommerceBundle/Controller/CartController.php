@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 use EcommerceBundle\Form\UsersAddressesType;
 use EcommerceBundle\Entity\UsersAddresses;
-//use Ecommerce\EcommerceBundle\Services\Paypal;
+use EcommerceBundle\Services\Paypal;
 
 class CartController extends Controller
 {
@@ -179,41 +179,41 @@ class CartController extends Controller
 //        );
 //        $total = 61.0;
 //        $totalttc = 73.0;
-//        $tax = $details['prixTTC'] - $details['prixHT'];
+        $tax = $details['priceTTC'] - $details['priceHT'];
 //        //$port = 10.0;
         
-//        $url = $this->generateUrl('validationCommand', array('id' => $command->getId()));
-//        $url = 'http://'.$_SERVER['HTTP_HOST'].$url;
-//        
-//        $paypal = new Paypal();
-//        $params = array(
-//                    'RETURNURL' => $url,
-//                    'CANCELURL' => $url,
-//            
-//                    'PAYMENTREQUEST_0_AMT' => $details['prixHT'] + $tax,
-//                    'PAYMENTREQUEST_0_CURRENCYCODE' => 'CAD',
-//                    'PAYMENTREQUEST_0_TAXAMT' => $tax,
-//                    //'PAYMENTREQUEST_0_SHIPPINGAMT' => $port,
-//                    'PAYMENTREQUEST_0_ITEMAMT' => $details['prixHT']
-//                 );
-//        
-//        $i=0;
-//        foreach ($details['products'] as $product){
-//            $params["L_PAYMENTREQUEST_0_NAME$i"] = $product['reference'];
-//            $params["L_PAYMENTREQUEST_0_DESC$i"] = '';
-//            $params["L_PAYMENTREQUEST_0_AMT$i"] = $product['prixHT'];
-//            $params["L_PAYMENTREQUEST_0_QTY$i"] = $product['quantity'];
-//            $i++;
-//        }
-//        $response = $paypal->request('SetExpressCheckout', $params);
-//        
-//        if($response){
-//            $paypal = 'https://www.sandbox.paypal.com/webscr?cmd=_express-checkout&useraction=commit&token='.$response['TOKEN'];
-//        }else{
-//            var_dump($paypal->errors);
-//            die('Erreur ');
-//        }
+        $url = $this->generateUrl('validationOrder', array('id' => $order->getId()));
+        $url = 'http://'.$_SERVER['HTTP_HOST'].$url;
+        
+        $paypal = new Paypal($this->getParameter('array_param_paypal'));
+        $params = array(
+                    'RETURNURL' => $url,
+                    'CANCELURL' => $url,
+            
+                    'PAYMENTREQUEST_0_AMT' => $details['priceHT'] + $tax,
+                    'PAYMENTREQUEST_0_CURRENCYCODE' => 'CAD',
+                    'PAYMENTREQUEST_0_TAXAMT' => $tax,
+//                    'PAYMENTREQUEST_0_SHIPPINGAMT' => $port,
+                    'PAYMENTREQUEST_0_ITEMAMT' => $details['priceHT']
+                 );
+        
+        $i=0;
+        foreach ($details['products'] as $product){
+            $params["L_PAYMENTREQUEST_0_NAME$i"] = $product['reference'];
+            $params["L_PAYMENTREQUEST_0_DESC$i"] = '';
+            $params["L_PAYMENTREQUEST_0_AMT$i"] = $product['priceHT'];
+            $params["L_PAYMENTREQUEST_0_QTY$i"] = $product['quantity'];
+            $i++;
+        }
+        $response = $paypal->request('SetExpressCheckout', $params);
+        
+        if($response){
+            $paypal = 'https://www.sandbox.paypal.com/webscr?cmd=_express-checkout&useraction=commit&token='.$response['TOKEN'];
+        }else{
+            var_dump($paypal->errors);
+            die('Erreur ');
+        }
 
-        return $this->render('EcommerceBundle:Default:Cart/layout/validation.html.twig', array( 'order' => $order));
+        return $this->render('EcommerceBundle:Default:Cart/layout/validation.html.twig', array( 'order' => $order, 'paypal' => $paypal));
     }
 }

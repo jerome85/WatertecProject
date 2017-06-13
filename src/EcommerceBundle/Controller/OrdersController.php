@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 use EcommerceBundle\Entity\UsersAddresses;
 use EcommerceBundle\Entity\Orders;
+use EcommerceBundle\Services\Paypal;
 
 class OrdersController extends Controller
 {
@@ -88,5 +89,71 @@ class OrdersController extends Controller
         
         $em->flush();
         return new Response($order->getId());
+    }
+    
+    /**
+     * Cette méthode remplace l'API banque
+     */
+    public function validationOrderAction($id, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $order = $em->getRepository('EcommerceBundle:Orders')->find($id);
+        $details  =  $order->getOrderDesc();
+        $tax = $details['priceTTC'] - $details['priceHT'];
+        
+        $paypal = new Paypal($this->getParameter('array_param_paypal'));
+        $checkoutDetails = $paypal->request('GetExpressCheckoutDetails', array(
+            'TOKEN' => $request->get('token')
+        ));
+        
+        if($checkoutDetails){
+            if($checkoutDetails['CHECKOUTSTATUS'] == 'PaymentActionCompleted'){
+                $this->get('session')->getFlashBag()->add('error', 'Commande déjà effectuée');
+            } else {
+                $params = array(
+                    'TOKEN' => $request->get('token'),
+                    'PAYERID' => $request->get('PayerID'),
+                    'PAYMENTACTION' => 'Sale',
+                    'PAYMENTREQUEST_0_AMT' => $details['priceHT'] + $tax,
+                    'PAYMENTREQUEST_0_CURRENCYCODE' => 'CAD',
+                    'PAYMENTREQUEST_0_TAXAMT' => $tax,
+                    'PAYMENTREQUEST_0_ITEMAMT' => $details['priceHT']
+                );
+                
+                $i=0;
+                foreach ($details['products'] as $product){
+                    $params["L_PAYMENTREQUEST_0_NAME$i"] = $product['reference'];
+                    $params["L_PAYMENTREQUEST_0_DESC$i"] = '';
+                    $params["L_PAYMENTREQUEST_0_AMT$i"] = $product['priceHT'];
+                    $params["L_PAYMENTREQUEST_0_QTY$i"] = $product['quantity'];
+                    $i++;
+                }
+                
+                $response = $paypal->request('DoExpressCheckoutPayment', $params);
+                if($response){
+                    if(!$order || $order->getValidate() == 1){
+                        throw $this->createNotFoundException("La commande n'existe pas");
+                    }
+                    
+                    $order->setValidate(1);
+                    $order->setConfirmation($response['PAYMENTINFO_0_TRANSACTIONID']);
+                    $order->setReference($this->container->get('setNewReference')->reference());
+                    $em->flush();
+                    
+                    $session = $request->getSession();
+                    $session->remove('address');
+                    $session->remove('cart');
+                    $session->remove('command');
+                    
+                    $this->get('session')->getFlashBag()->add('success', 'Commande complétée avec succès');
+                } else {
+                    var_dump($paypal_errors);
+                }
+            }
+        } else {
+            var_dump($paypal_errors);
+        }
+        
+        return $this->redirect($this->generateUrl('products'));
     }
 }

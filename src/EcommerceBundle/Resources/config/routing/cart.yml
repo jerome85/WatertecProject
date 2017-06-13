@@ -25,3 +25,6 @@ validation:
     defaults: { _controller: "EcommerceBundle:Cart:validation" }
     methods:  [GET, POST]
     
+validationOrder:
+    path:     /order/validation/{id}
+    defaults: { _controller: "EcommerceBundle:Orders:validationOrder" }

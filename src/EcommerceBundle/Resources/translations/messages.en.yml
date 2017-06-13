@@ -73,6 +73,20 @@ cart:
     continuePurchase: Continue shopping
     add:
         qtySuccess: Quantity modified successfully
+    validation:
+        yourOrders: Your orders
+        product: Product
+        quantity: Quantity
+        total: Total
+        billingAddress: Billing address
+        shippingAddress: Shipping address
+        cartTotal: Cart total
+        subtotal: Subtotal
+        shipping: Shipping
+        freeDelivery: Free delivery
+        taxe: Taxe
+        paypalPaiement: Safe pay with Paypal
+        back: Return
 
 search:
     typeClick: Type & Hit Enter..
