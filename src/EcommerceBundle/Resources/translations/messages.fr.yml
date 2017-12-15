@@ -111,4 +111,22 @@ shipping:
     add: Ajouter
     addressRemoveSuccess: L'adresse a été supprimée avec succès 
     
+contact:
+    technical: Service technique
+    sac: Service clientèle
+    support: Support
+    financial: Service financier
+    sendUsEmail: Envoyez-nous un email
+    name: Nom
+    email: Email
+    phone: Téléphone
+    services: Services
+    subject: Sujet
+    message: Message
+    sendMessage: Envoyer le message
+    close: Fermer
+    address: Adresse
+    fax: Fax
+    clickToSendMessage: Cliquer pour envoyer un message
+    sendEmail: Envoyer un email
 

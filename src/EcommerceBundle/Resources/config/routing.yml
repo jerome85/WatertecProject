@@ -1,6 +1,6 @@
-ecommerce_about:
-    path:     /
-    defaults: { _controller: EcommerceBundle:Default:index }
+routingDefault:
+    resource: "@EcommerceBundle/Resources/config/routing/default.yml"
+    prefix: /
     
 routingProductsAdmin:
     resource: "@EcommerceBundle/Resources/config/routingAdmin/products.yml"
@@ -22,3 +22,4 @@ routingCart:
     resource: "@EcommerceBundle/Resources/config/routing/cart.yml"
     prefix: /cart
     
+

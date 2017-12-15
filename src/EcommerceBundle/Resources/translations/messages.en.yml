@@ -111,3 +111,21 @@ shipping:
     add: Add
     addressRemoveSuccess: Address removed successfully
 
+contact:
+    technical: Technical service
+    sac: Costumer service
+    support: Support
+    financial: Financial service
+    sendUsEmail: Send us an email
+    name: Name
+    email: Email
+    phone: Phone
+    services: Services
+    subject: Subjet
+    message: Message
+    sendMessage: Send message
+    close: Close
+    address: Address
+    fax: Fax
+    clickToSendMessage: Click to send message
+    sendEmail: Send email
