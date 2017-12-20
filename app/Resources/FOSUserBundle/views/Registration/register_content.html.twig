@@ -1,54 +1,37 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<!-- Content
-                ============================================= -->
-<section id="content">
+<div class="tabs divcenter nobottommargin clearfix" id="tab-login-register" style="max-width: 500px;">
 
-    <div class="content-wrap">
-
-        <div class="container clearfix">
-
-            <div class="tabs divcenter nobottommargin clearfix" id="tab-login-register" style="max-width: 500px;">
-
-                <div class="tab-container">
-
-                    <div class="tab-content clearfix" id="tab-register">
-                        <div class="panel panel-default nobottommargin">
-                            <div class="panel-body" style="padding: 40px;">
-                                {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register nobottommargin'}}) }}
-                                     <h3>{{ 'registration.register.pageTitle'|trans }}</h3>
-                                <div class="col_full">
-                                    {{ form_row(form.email, { 'attr': {'class': 'form-control'} }) }}
-                                </div>
-                                <div class="col_full">
-                                    {{ form_row(form.username, { 'attr': {'class': 'form-control'} }) }}
-                                </div>
-                                <div class="col_full">
-                                    {{ form_row(form.plainPassword.first, { 'attr': {'class': 'form-control'} }) }}
-                                </div>
-                                <div class="col_full">
-                                    {{ form_row(form.plainPassword.second, { 'attr': {'class': 'form-control'} }) }}
-                                </div>
-               
-                                
-                                    <div>
-                                        <input class="button button-3d button-black nomargin" type="submit" value="{{ 'registration.submit'|trans }}" />
-                                    </div>
-                                {{ form_end(form) }}
-                               
-
-                                
-                            </div>
-                        </div>
+    <div class="tab-container">
+        <div class="tab-content clearfix" id="tab-register">
+            <div class="panel panel-default nobottommargin">
+                <div class="panel-body" style="padding: 40px;">
+                    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register nobottommargin'}}) }}
+                         <h3>{{ 'registration.register.pageTitle'|trans }}</h3>
+                    <div class="col_full">
+                        {{ form_row(form.email, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+                    <div class="col_full">
+                        {{ form_row(form.username, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+                    <div class="col_full">
+                        {{ form_row(form.plainPassword.first, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+                    <div class="col_full">
+                        {{ form_row(form.plainPassword.second, { 'attr': {'class': 'form-control'} }) }}
                     </div>
 
+
+                        <div>
+                            <input class="button button-3d button-black nomargin" type="submit" value="{{ 'registration.submit'|trans }}" />
+                        </div>
+                    {{ form_end(form) }}
+
                 </div>
-
             </div>
-
         </div>
-
     </div>
 
-</section><!-- #content end -->
+</div>
+                
 

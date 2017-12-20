@@ -4,63 +4,50 @@
     <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 {% endif %}
 
+<div class="tabs divcenter nobottommargin clearfix" id="tab-login-register" style="max-width: 500px;">
 
-<!-- Content
-                ============================================= -->
-<section id="content">
+    <div class="tab-container">
 
-    <div class="content-wrap">
+        <div class="tab-content clearfix" id="tab-login">
 
-        <div class="container clearfix">
+            <div class="panel panel-default nobottommargin">
 
-            <div class="tabs divcenter nobottommargin clearfix" id="tab-login-register" style="max-width: 500px;">
+                <div class="panel-body" style="padding: 40px;">
+                    <form action="{{ path("fos_user_security_check") }}" class="nobottommargin" method="post">
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
-                <div class="tab-container">
+                        <h3>{{ 'security.login.title'|trans }}</h3>
 
-                    <div class="tab-content clearfix" id="tab-login">
-                        
-                        <div class="panel panel-default nobottommargin">
-                            
-                            <div class="panel-body" style="padding: 40px;">
-                                <form action="{{ path("fos_user_security_check") }}" class="nobottommargin" method="post">
-                                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-                                    
-                                    <h3>{{ 'security.login.title'|trans }}</h3>
-                                    
-                                    <div class="col_full">
-                                        <label for="username">{{ 'security.login.username'|trans }}</label>
-                                        <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" class="form-control" />
-                                    </div>
-                                    
-                                    <div class="col_full">
-                                        <label for="password">{{ 'security.login.password'|trans }}</label>
-                                        <input type="password" id="password" name="_password" required="required" class="form-control" />
-                                    </div>
-                                    
-                                    <div class="col_full">
-                                        <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-                                        <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
-                                    </div>
-                                    
-                                    <div class="col_full nobottommargin">
-                                        <input class="button button-3d button-black nomargin" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
-                                        <a href="{{ path('fos_user_resetting_request') }}" class="fright">{{ 'security.login.forgot'|trans }}</a>
-                                        <br />
-                                        <a href="{{ path('fos_user_registration_register') }}" class="fright">{{ 'security.login.register'|trans }}</a>
-                                    </div>
-                                </form>
-                                
-                            </div>
+                        <div class="col_full">
+                            <label for="username">{{ 'security.login.username'|trans }}</label>
+                            <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" class="form-control" />
                         </div>
-                    </div>
+
+                        <div class="col_full">
+                            <label for="password">{{ 'security.login.password'|trans }}</label>
+                            <input type="password" id="password" name="_password" required="required" class="form-control" />
+                        </div>
+
+                        <div class="col_full">
+                            <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                            <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                        </div>
+
+                        <div class="col_full nobottommargin">
+                            <input class="button button-3d button-black nomargin" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+                            <a href="{{ path('fos_user_resetting_request') }}" class="fright">{{ 'security.login.forgot'|trans }}</a>
+                            <br />
+                            <a href="{{ path('fos_user_registration_register') }}" class="fright">{{ 'security.login.register'|trans }}</a>
+                        </div>
+                    </form>
 
                 </div>
-
             </div>
-
         </div>
 
     </div>
 
-</section><!-- #content end -->
+</div>
+
+
 

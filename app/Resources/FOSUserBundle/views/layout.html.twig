@@ -1,18 +1,30 @@
 {% extends '::layout/layout.html.twig' %}
 
 {% block body %}
-    {% if app.request.hasPreviousSession %}
-        {% for type, messages in app.session.flashbag.all() %}
-            {% for message in messages %}
-                <div class="alert alert-{{ type }}">
-                    <i class="icon-{{ type }}-sign"></i>
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endfor %}
-    {% endif %}
+    <!-- Content
+                ============================================= -->
+    <section id="content">
 
-    {% block fos_user_content %}
-    {% endblock fos_user_content %}
+        <div class="content-wrap">
+
+            <div class="container clearfix">
+            
+                {% if app.request.hasPreviousSession %}
+                    {% for type, messages in app.session.flashbag.all() %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ type }}">
+                                <i class="icon-{{ type }}-sign"></i>
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                {% endif %}
+
+                {% block fos_user_content %}
+                {% endblock fos_user_content %}
+            </div>
+        </div>
+
+    </section><!-- #content end -->
 {% endblock body %}
 

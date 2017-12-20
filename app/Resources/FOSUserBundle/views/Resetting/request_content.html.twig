@@ -1,49 +1,37 @@
 {% trans_default_domain 'FOSUserBundle' %}
-<!-- Content
-============================================= -->
-<section id="content">
 
-    <div class="content-wrap">
+<div class="tabs divcenter nobottommargin clearfix" id="tab-login-register" style="max-width: 500px;">
 
-        <div class="container clearfix">
+    <div class="tab-container">
 
-            <div class="tabs divcenter nobottommargin clearfix" id="tab-login-register" style="max-width: 500px;">
+        <div class="tab-content clearfix" id="tab-register">
+            <div class="panel panel-default nobottommargin">
+                <div class="panel-body" style="padding: 40px;">
+                    <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="nobottommargin fos_user_resetting_request">
 
-                <div class="tab-container">
+                        <h3>{{ 'resetting.request.pageTitle'|trans }} ?</h3>
 
-                    <div class="tab-content clearfix" id="tab-register">
-                        <div class="panel panel-default nobottommargin">
-                            <div class="panel-body" style="padding: 40px;">
-                                <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="nobottommargin fos_user_resetting_request">
+                        <div class="col_full">
+                            {% if invalid_username is defined %}
+                                <div class="style-msg errormsg">
+                                    <div class="sb-msg"><i class="icon-remove"></i>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}</div>
+                                </div>
 
-                                    <h3>{{ 'resetting.request.pageTitle'|trans }} ?</h3>
-
-                                    <div class="col_full">
-                                        {% if invalid_username is defined %}
-                                            <div class="style-msg errormsg">
-                                                <div class="sb-msg"><i class="icon-remove"></i>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}</div>
-                                            </div>
-
-                                        {% endif %}
-                                        <label for="username">{{ 'resetting.request.username'|trans }}</label>
-                                        <input type="text" id="username" name="username" required="required" class="form-control"/>
-                                    </div>
-
-                                    <div class="col_full nobottommargin">
-                                        <input class="button button-3d button-black nomargin" type="submit" value="{{ 'resetting.request.submit'|trans }}" />
-                                    </div>
-                                </form>
-
-                            </div>
+                            {% endif %}
+                            <label for="username">{{ 'resetting.request.username'|trans }}</label>
+                            <input type="text" id="username" name="username" required="required" class="form-control"/>
                         </div>
-                    </div>
+
+                        <div class="col_full nobottommargin">
+                            <input class="button button-3d button-black nomargin" type="submit" value="{{ 'resetting.request.submit'|trans }}" />
+                        </div>
+                    </form>
 
                 </div>
-
             </div>
-
         </div>
 
     </div>
 
-</section><!-- #content end -->
+</div>
+
